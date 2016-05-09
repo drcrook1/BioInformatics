@@ -5,13 +5,3 @@ for how to deploy and deliver each component will reside here.
 
 Before contributing to this project, please watch the following video to understand the very high 
 level generic form of the architecture: https://aka.ms/iotanalytics 
-
-#IMPORTANT
-High level naming conventions:
-
-Project Prefix . Primary Section . Specific High . Specific Low
-
-BioInfo.App.Library.Analytics  would be a good example of this naming convention.
-
-BioInfo.Web.Api.Services is another good example of this naming convention.
-

@@ -12,3 +12,12 @@ Each folder is a compartmentalized flavor of the project.  The project delivers 
 3. Power BI
 
 The entire project runs in Azure and is tested there.
+
+#IMPORTANT
+High level naming conventions:
+
+Project Prefix . Primary Section . Specific High . Specific Low
+
+BioInfo.App.Library.Analytics  would be a good example of this naming convention.
+
+BioInfo.Web.Api.Services is another good example of this naming convention.
