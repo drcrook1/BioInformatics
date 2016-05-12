@@ -9,7 +9,8 @@ level generic form of the architecture: https://aka.ms/iotanalytics
 Each folder is a compartmentalized flavor of the project.  The project delivers to
 1. Web
 2. iOS, Android, UWP
-3. Power BI
+3. Analytics
+4. Power BI
 
 The entire project runs in Azure and is tested there.
 
