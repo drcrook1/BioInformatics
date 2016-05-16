@@ -20,4 +20,4 @@ Project Prefix . Primary Section . Specific High . Specific Low
 
 BioInfo.App.Library.Analytics  would be a good example of this naming convention.
 
-BioInfo.Web.Api.Services is another good example of this naming convention.
+BioInfo.Web.Api.Services is another good example of this naming convention. 
