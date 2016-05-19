@@ -2,5 +2,35 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "IoTHubName": {
+            "value": "samplehubforiot"
+        },
+        "DataLakeStoreName": {
+            "value": "sampledatalakefordata"
+        },
+        "ServiceBusNamespace": {
+            "value": "rahulraisbnamespace"
+        },
+        "ServiceBusQueueName-StreamAnalytics-WebJob": {
+            "value": "quename"
+        },
+        "AzureSqlDatabaseName": {
+            "value": "azuresql"
+        },
+        "BioInfoAPIApplicationFarmName": {
+            "value": "bioinfoapifarm3434"
+        },
+        "BioInfoAPIApplicationFarmWorkerSize": {
+            "value": "1"
+        },
+        "BioInfoAdminApplicationFarmName": {
+            "value": "bioinfoappfarm232323"
+        },
+        "BioInfoAdminApplicationFarmWorkerSize": {
+            "value": "1"
+        },
+        "BioInfoExternalApplicationFarmName": {
+            "value": "extappfarm12312313"
+        }
     }
 }
