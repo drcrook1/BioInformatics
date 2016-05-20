@@ -1,0 +1,2 @@
+MainPackage=C:\Projects\AfterHours\Demo\RockingMicrosoftBand\RockingMicrosoftBand.Main\bin\x64\Debug\RockingMicrosoftBand.Main_1.0.0.0_x64_Debug.appx
+SymbolPackage=C:\Projects\AfterHours\Demo\RockingMicrosoftBand\RockingMicrosoftBand.Main\AppPackages\RockingMicrosoftBand.Main_1.0.0.0_Debug_Test\RockingMicrosoftBand.Main_1.0.0.0_x64_Debug.appxsym

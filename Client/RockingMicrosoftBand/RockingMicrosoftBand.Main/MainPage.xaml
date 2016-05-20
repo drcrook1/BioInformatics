@@ -1,0 +1,481 @@
+﻿<Page
+    x:Class="RockingMicrosoftBand.Main.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RockingMicrosoftBand.Main"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" DataContext="{Binding Main, Source={StaticResource Locator}}" Foreground="LightBlue" FontFamily="Segoe UI"  ScrollViewer.HorizontalScrollBarVisibility="Visible" >
+    <Page.Resources>
+        <DataTemplate x:Key="AllReadings">
+            <Grid Height="12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" FontSize="8" Text="{Binding ToCSV}" Foreground="White"></TextBlock>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid Background="Black" ScrollViewer.VerticalScrollMode="Enabled">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Height="40">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Grid Margin="5,2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" FontSize="24" Text="{Binding MicrosoftBand.IOTHubDeviceId}"  Foreground="Red"/>
+                    <TextBlock VerticalAlignment="Center" Grid.Row="1" FontSize="8" HorizontalAlignment="Center">IOT Name</TextBlock>
+                </Grid>
+                <Grid Margin="5,2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" FontSize="24" Text="{Binding MicrosoftBand.Name}"  Foreground="Orange"/>
+                    <TextBlock VerticalAlignment="Center" Grid.Row="1" FontSize="8" HorizontalAlignment="Center">Device Name</TextBlock>
+                </Grid>
+                <Grid Margin="5,2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" FontSize="24" Text="{Binding MicrosoftBand.BandTypeValue}"  Foreground="Yellow"/>
+                    <TextBlock VerticalAlignment="Center" Grid.Row="1" FontSize="8" HorizontalAlignment="Center">DeviceType</TextBlock>
+                </Grid>
+                <Grid Margin="5,2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" FontSize="24" Text="{Binding MicrosoftBand.FirmwareVersion}"  Foreground="Green"/>
+                    <TextBlock VerticalAlignment="Center" Grid.Row="1" FontSize="8" HorizontalAlignment="Center">Firmware</TextBlock>
+                </Grid>
+                <Grid Margin="5,2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" FontSize="24" Text="{Binding MicrosoftBand.HardwareVersion}"  Foreground="SkyBlue"/>
+                    <TextBlock VerticalAlignment="Center" Grid.Row="1" FontSize="8" HorizontalAlignment="Center">Hardware</TextBlock>
+                </Grid>
+                <Border Visibility="{Binding Band2Visibility}" Margin="5,2">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="4*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock  Text="{Binding TextBand}" VerticalAlignment="Center" FontFamily="{Binding FontFamilyBand}" Foreground="{Binding Band2Background}" FontSize="16" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="1" Text="Band Two" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="8" />
+
+                    </Grid>
+                </Border>
+                <Border Visibility="{Binding Band1Visibility}"  Margin="5,2">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="4*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock  Text="{Binding TextBand}" VerticalAlignment="Center" FontFamily="{Binding FontFamilyBand}" Foreground="{Binding Band1Background}" FontSize="16"  HorizontalAlignment="Center" />
+                        <TextBlock Grid.Row="1" Text="Band One" VerticalAlignment="Center" Foreground="White" FontSize="8" />
+
+                    </Grid>
+                </Border>
+            </StackPanel>
+            <!--<Button x:Name="ButtonRun" Content="{Binding RunText}" BorderBrush="White" BorderThickness="2" HorizontalAlignment="Center" Margin="10,10,0,0" VerticalAlignment="Top" Command="{Binding RunCommand}" FontSize="20" Foreground="White" Background="LightBlue"/>-->
+        </Grid>
+        <Canvas HorizontalAlignment="Center">
+            <Line Stroke="White" StrokeThickness="2" X1="-300" X2="300" Y1="0" Y2="0"></Line>
+        </Canvas>
+        <Border Grid.Row="1" HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Top" >
+            <StackPanel Grid.Row="1" HorizontalAlignment="Stretch" Margin="2" VerticalAlignment="Stretch">
+                <!--<TextBlock FontSize="20" Text="Band 2 Only" Visibility="{Binding Band2Visibility}" />-->
+                <Grid HorizontalAlignment="Left" Visibility="{Binding Band2Visibility}"  VerticalAlignment="Center" Width="200">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition  Width="2*"/>
+                        <ColumnDefinition  Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Compatible With:" FontSize="8" VerticalAlignment="Center"></TextBlock>
+                    <Border Grid.Column="1" MaxWidth="100" Margin="5,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="4*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock  Text="{Binding TextBand}" VerticalAlignment="Center" FontFamily="{Binding FontFamilyBand}" Foreground="{Binding Band2Background}" FontSize="16" HorizontalAlignment="Center" />
+                            <TextBlock Grid.Row="1" Text="Band Two" VerticalAlignment="Center" Foreground="White" FontSize="8" />
+
+                        </Grid>
+                    </Border>
+                </Grid>
+                <Border Background="Black" Visibility="{Binding Band2Visibility}" CornerRadius="20" >
+                    <StackPanel Visibility="{Binding Band2Visibility}">
+                        <Grid Height="50" Margin="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="7*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Width="50"  Foreground="White" FontSize="25" VerticalContentAlignment="Center"  Content="{Binding RunTextAltimeter}" FontFamily="{Binding FontFamilyAltimeter}" Command="{Binding StartOrStopAltimeter}" Background="{Binding BackgroundAltimeter}" Grid.ColumnSpan="2" />
+                            <Grid Margin="5,2" Grid.Column="1" Grid.ColumnSpan="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="4*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" FontSize="16" Text="{Binding  MicrosoftBand.AltimeterSensor.LatestStatus}"  Foreground="{Binding BackgroundAltimeter}"/>
+                                <TextBlock VerticalAlignment="Center" Grid.Row="1" FontSize="10" HorizontalAlignment="Center" Text="{Binding MicrosoftBand.AltimeterSensor.Name}" Foreground="White"/>
+                            </Grid>
+
+
+                            <!--<TextBlock FontSize="20" VerticalAlignment="Center" Grid.ColumnSpan="2" >
+                        <Run Text="{Binding MicrosoftBand.AltimeterSensor.Name, Mode=OneWay}"/>
+                           <Run Text=": "/>
+                        <Run Text="{Binding MicrosoftBand.AltimeterSensor.LatestStatus, Mode=OneWay}"/>
+                            </TextBlock>-->
+                        </Grid>
+                        <Grid Height="50" Margin="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="7*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Width="50" VerticalContentAlignment="Center"  Foreground="White" FontSize="25"  Content="{Binding RunTextAmbientLighting}" FontFamily="{Binding FontFamilyAmbientLighting}" Command="{Binding StartOrStopAmbientLighting}" Background="{Binding BackgroundAmbientLighting}"/>
+                            <Grid Margin="5,2" Grid.Column="1" Grid.ColumnSpan="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="4*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" FontSize="16" Text="{Binding  MicrosoftBand.AmbientLightSensor.LatestStatus}"  Foreground="{Binding BackgroundAmbientLighting}"/>
+                                <TextBlock VerticalAlignment="Center" Grid.Row="1" FontSize="10" HorizontalAlignment="Center" Text="{Binding MicrosoftBand.AmbientLightSensor.Name}" Foreground="White"/>
+                            </Grid>
+                           
+                        </Grid>
+                        <Grid Height="50" Margin="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="7*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Width="50"  VerticalContentAlignment="Center" Foreground="White" FontSize="25"  Content="{Binding RunTextBarometer}" FontFamily="{Binding FontFamilyBarometer}" Command="{Binding StartOrStopBarometer}" Background="{Binding BackgroundBarometer}"/>
+                            <Grid Margin="5,2" Grid.Column="1" Grid.ColumnSpan="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="4*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" FontSize="16" Text="{Binding  MicrosoftBand.BarometerSensor.LatestStatus}"  Foreground="{Binding BackgroundBarometer}"/>
+                                <TextBlock VerticalAlignment="Center" Grid.Row="1" FontSize="10" HorizontalAlignment="Center" Text="{Binding MicrosoftBand.BarometerSensor.Name}" Foreground="White"/>
+                            </Grid>
+       
+                        </Grid>
+                        <Grid Height="50" Margin="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="7*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Width="50" VerticalContentAlignment="Center"  Foreground="White" FontSize="25"  Content="{Binding RunTextGSR}" FontFamily="{Binding FontFamilyGSR}" Command="{Binding StartOrStopGSR}"  Background="{Binding BackgroundGSR}"/>
+                            
+                            <Grid Margin="5,2" Grid.Column="1" Grid.ColumnSpan="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="4*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" FontSize="16" Text="{Binding  MicrosoftBand.GsrSensor.LatestStatus}"  Foreground="{Binding BackgroundGSR}"/>
+                                <TextBlock VerticalAlignment="Center" Grid.Row="1" FontSize="10" HorizontalAlignment="Center" Text="{Binding MicrosoftBand.GsrSensor.Name}" Foreground="White"/>
+                            </Grid>
+                            
+                        </Grid>
+                        <Grid Height="50" Margin="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="7*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Width="50" VerticalContentAlignment="Center"  Foreground="White" FontSize="25"  Content="{Binding RunTextRRInterval}" FontFamily="{Binding FontFamilyRRInterval}" Command="{Binding StartOrStopRRInterval}"  Background="{Binding BackgroundRRInterval}">
+                            </Button>
+                            <Grid Margin="5,2" Grid.Column="1" Grid.ColumnSpan="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="4*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" FontSize="16" Text="{Binding  MicrosoftBand.RRIntervalSensor.LatestStatus}"  Foreground="{Binding BackgroundRRInterval}"/>
+                                <TextBlock VerticalAlignment="Center" Grid.Row="1" FontSize="10" HorizontalAlignment="Center" Text="{Binding MicrosoftBand.RRIntervalSensor.Name}" Foreground="White"/>
+                            </Grid>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                <!--<TextBlock FontSize="20" Text="Band 1 or Band 2" Visibility="{Binding Band1Visibility}"/>-->
+                <Grid HorizontalAlignment="Left" Visibility="{Binding Band1Visibility}"  VerticalAlignment="Center" Width="200">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition  Width="2*"/>
+                        <ColumnDefinition  Width="*"/>
+                        <ColumnDefinition  Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Compatible With:" FontSize="8" VerticalAlignment="Center"></TextBlock>
+                    <Border Grid.Column="1" MaxWidth="100" Margin="5,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="4*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock  Text="{Binding TextBand}" VerticalAlignment="Center" FontFamily="{Binding FontFamilyBand}" Foreground="{Binding Band2Background}" FontSize="16" HorizontalAlignment="Center" />
+                            <TextBlock Grid.Row="1" Text="Band Two" VerticalAlignment="Center" Foreground="White" FontSize="8" />
+
+                        </Grid>
+                    </Border>
+                    <Border Grid.Column="2" MaxWidth="100"  Margin="5,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="4*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock  Text="{Binding TextBand}" VerticalAlignment="Center" FontFamily="{Binding FontFamilyBand}" Foreground="{Binding Band1Background}" FontSize="16"  HorizontalAlignment="Center" />
+                            <TextBlock Grid.Row="1" Text="Band One" VerticalAlignment="Center" Foreground="White" FontSize="8" />
+                        </Grid>
+                    </Border>
+                </Grid>
+                <Border Background="Black" Visibility="{Binding Band1Visibility}" CornerRadius="20">
+                    <StackPanel>
+                        <Grid Height="50" Margin="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="7*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Width="50" VerticalContentAlignment="Center"  Foreground="White" FontSize="25"  Content="{Binding RunTextAccelerometer}" FontFamily="{Binding FontFamilyAccelerometer}" Command="{Binding StartOrStopAccelerometer}" Background="{Binding BackgroundAccelerometer}"/>
+                            <Grid Margin="5,2" Grid.Column="1" Grid.ColumnSpan="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="4*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" FontSize="16" Text="{Binding  MicrosoftBand.AccelerometerSensor.LatestStatus}"  Foreground="{Binding BackgroundAccelerometer}"/>
+                                <TextBlock VerticalAlignment="Center" Grid.Row="1" FontSize="10" HorizontalAlignment="Center" Text="{Binding MicrosoftBand.AccelerometerSensor.Name}" Foreground="White"/>
+                            </Grid>
+                        </Grid>
+                        <Grid Height="50" Margin="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="7*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Width="50" VerticalContentAlignment="Center"  Foreground="White" FontSize="25"  Content="{Binding RunTextCalories}" FontFamily="{Binding FontFamilyCalories}" Command="{Binding StartOrStopCalories}" Background="{Binding BackgroundCalories}"/>
+                            <Grid Margin="5,2" Grid.Column="1" Grid.ColumnSpan="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="4*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" FontSize="16" Text="{Binding  MicrosoftBand.CalorieSensor.LatestStatus}"  Foreground="{Binding BackgroundCalories}"/>
+                                <TextBlock VerticalAlignment="Center" Grid.Row="1" FontSize="10" HorizontalAlignment="Center" Text="{Binding MicrosoftBand.CalorieSensor.Name}" Foreground="White"/>
+                            </Grid>
+                        </Grid>
+                        <Grid Height="50" Margin="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="7*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Width="50" VerticalContentAlignment="Center"  Foreground="White" FontSize="25"  Content="{Binding RunTextContact}" FontFamily="{Binding FontFamilyContact}" Command="{Binding StartOrStopContact}"  Background="{Binding BackgroundContact}"/>
+                            <Grid  Margin="5,2" Grid.Column="1" Grid.ColumnSpan="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="4*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" FontSize="16" Text="{Binding  MicrosoftBand.ContactSensor.LatestStatus}"  Foreground="{Binding BackgroundContact}"/>
+                                <TextBlock VerticalAlignment="Center" Grid.Row="1" FontSize="10" HorizontalAlignment="Center" Text="{Binding MicrosoftBand.ContactSensor.Name}" Foreground="White"/>
+                            </Grid>
+                        </Grid>
+                        <Grid Height="50" Margin="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="7*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Width="50" VerticalContentAlignment="Center"  Foreground="White" FontSize="25"  Content="{Binding RunTextDistance}" FontFamily="{Binding FontFamilyDistance}" Command="{Binding StartOrStopDistance}"  Background="{Binding BackgroundDistance}"/>
+                            <Grid Margin="5,2" Grid.Column="1" Grid.ColumnSpan="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="4*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" FontSize="16" Text="{Binding  MicrosoftBand.DistanceSensor.LatestStatus}"  Foreground="{Binding BackgroundDistance}" />
+                                <TextBlock VerticalAlignment="Center" Grid.Row="1" FontSize="10" HorizontalAlignment="Center" Text="{Binding MicrosoftBand.DistanceSensor.Name}" Foreground="White"/>
+                            </Grid>
+                        </Grid>
+                        <Grid Height="50" Margin="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="7*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Width="50" VerticalContentAlignment="Center"  Foreground="White" FontSize="25"  Content="{Binding RunTextGyroscope}" FontFamily="{Binding FontFamilyGyroscope}" Command="{Binding StartOrStopGyroscope}"  Background="{Binding BackgroundGyroscope}"/>
+                            <Grid  Margin="5,2" Grid.Column="1" Grid.ColumnSpan="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="4*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock  Foreground="{Binding BackgroundGyroscope}" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" FontSize="16" Text="{Binding  MicrosoftBand.GyroscopeSensor.LatestStatus}" />
+                                <TextBlock VerticalAlignment="Center" Grid.Row="1" FontSize="10" HorizontalAlignment="Center" Text="{Binding MicrosoftBand.GyroscopeSensor.Name}" Foreground="White"/>
+                            </Grid>
+                        </Grid>
+                        <Grid Height="50" Margin="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="7*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Width="50" VerticalContentAlignment="Center"  Foreground="White" FontSize="25"  Content="{Binding RunTextHeartRate}" FontFamily="{Binding FontFamilyHeartRate}" Command="{Binding StartOrStopHeartRate}"  Background="{Binding BackgroundHeartRate}"/>
+                            <Grid   Margin="5,2" Grid.Column="1" Grid.ColumnSpan="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="4*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Foreground="{Binding BackgroundHeartRate}" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" FontSize="16" Text="{Binding  MicrosoftBand.HeartRateSensor.LatestStatus}"  />
+                                <TextBlock VerticalAlignment="Center" Grid.Row="1" FontSize="10" HorizontalAlignment="Center" Text="{Binding MicrosoftBand.HeartRateSensor.Name}" Foreground="White"/>
+                            </Grid>
+                        </Grid>
+                        <Grid Height="50" Margin="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="7*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Width="50" VerticalContentAlignment="Center"  Foreground="White" FontSize="25"  Content="{Binding RunTextPedometer}" FontFamily="{Binding FontFamilyPedometer}" Command="{Binding StartOrStopPedometer}"  Background="{Binding BackgroundPedometer}"/>
+                            <Grid  Margin="5,2" Grid.Column="1" Grid.ColumnSpan="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="4*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock VerticalAlignment="Center"  Foreground="{Binding BackgroundPedometer}" HorizontalAlignment="Center" Grid.Row="0" FontSize="16" Text="{Binding  MicrosoftBand.PedometerSensor.LatestStatus}" />
+                                <TextBlock VerticalAlignment="Center" Grid.Row="1" FontSize="10" HorizontalAlignment="Center" Text="{Binding MicrosoftBand.PedometerSensor.Name}" Foreground="White"/>
+                            </Grid>
+                        </Grid>
+
+                        <Grid Height="50" Margin="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="7*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Width="50" VerticalContentAlignment="Center" Foreground="White" FontSize="25"  Content="{Binding RunTextSkinTemperature}" FontFamily="{Binding FontFamilySkinTemperature}" Command="{Binding StartOrStopSkinTemperature}"  Background="{Binding BackgroundSkinTemperature}"/>
+                            <Grid  Margin="5,2" Grid.Column="1" Grid.ColumnSpan="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="4*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" FontSize="16" Text="{Binding  MicrosoftBand.SkinTemperatureSensor.LatestStatus}"  Foreground="{Binding BackgroundSkinTemperature}" />
+                                <TextBlock VerticalAlignment="Center" Grid.Row="1" FontSize="10" HorizontalAlignment="Center" Text="{Binding MicrosoftBand.SkinTemperatureSensor.Name}" Foreground="White"/>
+                            </Grid>
+                        </Grid>
+                        <Grid Height="50" Margin="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="7*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Width="50" VerticalContentAlignment="Center" Foreground="White" FontSize="25"  Content="{Binding RunTextUVReading}" FontFamily="{Binding FontFamilyUVReading}" Command="{Binding StartOrStopUVReading}"  Background="{Binding BackgroundUVReading}"/>
+                            <Grid  Margin="5,2" Grid.Column="1" Grid.ColumnSpan="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="4*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" FontSize="16" Text="{Binding  MicrosoftBand.UVSensor.LatestStatus}"  Foreground="{Binding BackgroundUVReading}"/>
+                                <TextBlock VerticalAlignment="Center" Grid.Row="1" FontSize="10" HorizontalAlignment="Center" Text="{Binding MicrosoftBand.UVSensor.Name}" Foreground="White"/>
+                            </Grid>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                <Canvas HorizontalAlignment="Center"  Margin="5,20,5,0" >
+                    <Line Stroke="White" StrokeThickness="2" X1="-300" X2="300" Y1="0" Y2="0"></Line>
+                </Canvas>
+                <Grid  Margin="5,20,5,0" Grid.Column="0" Grid.ColumnSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" FontSize="12" Text="{Binding  MicrosoftBand.LastReading}"  Foreground="WhiteSmoke" />
+                    <TextBlock VerticalAlignment="Center" Grid.Row="1" FontSize="10" HorizontalAlignment="Center" Text="Last Reading" Foreground="Violet"/>
+                </Grid>
+                <Grid  Margin="5,2" Grid.Column="0" Grid.ColumnSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" FontSize="12" Text="{Binding  MicrosoftBand.LatestStatus}"  Foreground="WhiteSmoke" />
+                    <TextBlock VerticalAlignment="Center" Grid.Row="1" FontSize="10" HorizontalAlignment="Center" Text="Last Status" Foreground="LimeGreen"/>
+                </Grid>
+
+            </StackPanel>
+        </Border>
+        <StackPanel  Grid.Row="2" >
+            <Canvas HorizontalAlignment="Center"  Margin="5,20,5,0" >
+                <Line Stroke="White" StrokeThickness="2" X1="-300" X2="300" Y1="0" Y2="0"></Line>
+            </Canvas>
+            <Border HorizontalAlignment="Center" MinWidth="300"  MaxWidth="500" MaxHeight="300"  >
+                
+            <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <ListView  FontSize="10" x:Name="LineItemsList" Height="300"    Background="Transparent" Foreground="WhiteSmoke"  MinWidth="600"
+                                    ItemsSource="{Binding MicrosoftBand.AllReadings}" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollMode="Auto"
+                                    ItemTemplate="{StaticResource AllReadings}"  />
+                    <TextBlock VerticalAlignment="Center" Grid.Row="1" FontSize="10" HorizontalAlignment="Center" Text="All Readings" Foreground="Violet"/>
+
+                    <!--<TextBlock Text="{Binding  MicrosoftBand.ErrorMessage}" TextWrapping="Wrap" FontSize="20" Height="100" Width="400"  Foreground="Red"/>-->
+            </Grid>
+        </Border>
+            <Canvas HorizontalAlignment="Center"  Margin="5,20,5,0" >
+                <Line Stroke="White" StrokeThickness="2" X1="-300" X2="300" Y1="0" Y2="0"></Line>
+            </Canvas>
+            <Grid  Margin="5,4" Background="Black">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBox  Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" FontSize="12" Text="{Binding MicrosoftBand.IOTHubDeviceConnectionString,Mode=TwoWay}" Background="DarkGray" />
+                <TextBlock VerticalAlignment="Center" Grid.Row="1" FontSize="10" HorizontalAlignment="Center" Text="Iot Device Connection String" Foreground="White"/>
+
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>
