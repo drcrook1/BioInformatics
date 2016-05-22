@@ -136,6 +136,24 @@
       ],
       "defaultValue": "F1"
     },
+    "EventHubName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the Event Hub"
+      }
+    },
+    "EventHubSendPrimaryKey": {
+      "type": "string"
+    },
+    "EventHubSendSecondaryKey": {
+      "type": "string"
+    },
+    "EventHubListenPrimaryKey": {
+      "type": "string"
+    },
+    "EventHubListenSecondaryKey": {
+      "type": "string"
+    },
     "NumberOfAdminApplicationFarmWorkers": {
       "type": "int",
       "defaultValue": 1
@@ -155,6 +173,47 @@
     "ServiceBusQueueName-StreamAnalytics-WebJob": {
       "type": "string",
       "minLength": 3
+    },
+    "bioinfodatabaseserverAdminLogin": {
+      "type": "string",
+      "minLength": 1
+    },
+    "bioinfodatabaseserverAdminLoginPassword": {
+      "type": "securestring"
+    },
+    "bioinfodatabaseName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "bioinfodatabaseCollation": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "SQL_Latin1_General_CP1_CI_AS"
+    },
+    "bioinfodatabaseEdition": {
+      "type": "string",
+      "defaultValue": "Basic",
+      "allowedValues": [
+        "Basic",
+        "Standard",
+        "Premium"
+      ]
+    },
+    "bioinfodatabaseRequestedServiceObjectiveName": {
+      "type": "string",
+      "defaultValue": "Basic",
+      "allowedValues": [
+        "Basic",
+        "S0",
+        "S1",
+        "S2",
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "metadata": {
+        "description": "Describes the performance level for Edition"
+      }
     }
   },
   "variables": {
@@ -164,10 +223,14 @@
     "IoTHubAdminPolicyName": "Administration",
     "IoTHubDeviceConnectionPolicyName": "DeviceConnect",
     "IoTHubServiceConnectPolicyName": "ServiceConnect",
+    "SBListenOnlyKeyName": "ListenOnlyKey",
     "AppServicePlanApiVersion": "2014-06-01",
     "WebAppApiVersion": "2015-08-01",
     "IoTHubApiVersion": "2016-02-03",
-    "DataLakeApiVersion": "2015-10-01-preview"
+    "DataLakeApiVersion": "2015-10-01-preview",
+    "AzureSqlDatabaseApiVersion": "2014-04-01-preview",
+    "EventHubApiVersion": "2014-09-01",
+    "bioinfodatabaseserverName": "[concat('bioinfodatabaseserver', uniqueString(resourceGroup().id))]"
   },
   "resources": [
     //// Create Web Farms and Applications
@@ -350,21 +413,126 @@
       "apiVersion": "[variables('DataLakeApiVersion')]",
       "location": "[resourceGroup().location]",
       "name": "[parameters('DataLakeStoreName')]",
-      "type": "Microsoft.DataLakeStore/accounts"
-    }
-  ],
-  "outputs": {
-    "ApiWebAppUri": {
-      "type": "string",
-      "value": "[concat('http://',reference(resourceId('Microsoft.Web/sites', variables('BioInfoAPIApplicationName'))).hostNames[0])]"
+      "type": "Microsoft.DataLakeStore/accounts",
+      "tags": {
+        "displayName": "BioInfoDataLake"
+      }
     },
-    "AdminWebAppUri": {
-      "type": "string",
-      "value": "[concat('http://',reference(resourceId('Microsoft.Web/sites', variables('BioInfoAdminApplicationName'))).hostNames[0])]"
+    //// Create SQL Database
+    {
+      "apiVersion": "[variables('AzureSqlDatabaseApiVersion')]",
+      "dependsOn": [ ],
+      "location": "[resourceGroup().location]",
+      "name": "[variables('bioinfodatabaseserverName')]",
+      "properties": {
+        "administratorLogin": "[parameters('bioinfodatabaseserverAdminLogin')]",
+        "administratorLoginPassword": "[parameters('bioinfodatabaseserverAdminLoginPassword')]"
+      },
+      "resources": [
+        {
+          "apiVersion": "2014-04-01-preview",
+          "dependsOn": [
+            "[concat('Microsoft.Sql/servers/', variables('bioinfodatabaseserverName'))]"
+          ],
+          "location": "[resourceGroup().location]",
+          "name": "AllowAllWindowsAzureIps",
+          "properties": {
+            "startIpAddress": "0.0.0.0",
+            "endIpAddress": "0.0.0.0"
+          },
+          "type": "firewallrules"
+        },
+        {
+          "apiVersion": "2014-04-01-preview",
+          "dependsOn": [
+            "[variables('bioinfodatabaseserverName')]"
+          ],
+          "location": "[resourceGroup().location]",
+          "name": "[parameters('bioinfodatabaseName')]",
+          "properties": {
+            "collation": "[parameters('bioinfodatabaseCollation')]",
+            "edition": "[parameters('bioinfodatabaseEdition')]",
+            "maxSizeBytes": "1073741824",
+            "requestedServiceObjectiveName": "[parameters('bioinfodatabaseRequestedServiceObjectiveName')]"
+          },
+          "tags": {
+            "displayName": "BioInfoDatabase"
+          },
+          "type": "databases"
+        }
+      ],
+      "tags": {
+        "displayName": "BioInfoDatabaseServer"
+      },
+      "type": "Microsoft.Sql/servers"
     },
-    "ExternalWebAppUri": {
-      "type": "string",
-      "value": "[concat('http://',reference(resourceId('Microsoft.Web/sites', variables('BioInfoExternalApplicationName'))).hostNames[0])]"
+    //// Create Event Hub
+    {
+      "apiVersion": "[variables('EventHubApiVersion')]",
+      "name": "[parameters('ServiceBusNamespace')]",
+      "type": "Microsoft.EventHub/namespaces",
+      "location": "[resourceGroup().location]",
+      "resources": [
+        {
+          "apiVersion": "[variables('EventHubApiVersion')]",
+          "name": "[parameters('EventHubName')]",
+          "type": "eventHubs",
+          "dependsOn": [
+            "[concat('Microsoft.EventHub/namespaces/', parameters('ServiceBusNamespace'))]"
+          ],
+          "properties": {
+            "path": "[parameters('EventHubName')]"
+          }
+        },
+        {
+          "apiVersion": "[variables('EventHubApiVersion')]",
+          "name": "[concat(parameters('ServiceBusNamespace'),'/SendOnlyKey')]",
+          "type": "Microsoft.EventHub/namespaces/authorizationRules",
+          "dependsOn": [
+            "[concat('Microsoft.EventHub/namespaces/', parameters('ServiceBusNamespace'))]"
+          ],
+          "location": "[resourceGroup().location]",
+          "properties": {
+            "KeyName": "SendOnlyKey",
+            "ClaimType": "SendSharedAccessKey",
+            "ClaimValue": "None",
+            "PrimaryKey": "[parameters('EventHubSendPrimaryKey')]",
+            "SecondaryKey": "[parameters('EventHubSendSecondaryKey')]",
+            "Rights": [ "Send" ],
+            "Revision": -1
+          }
+        },
+        {
+          "apiVersion": "[variables('EventHubApiVersion')]",
+          "name": "[concat(parameters('ServiceBusNamespace'),'/',variables('SBListenOnlyKeyName'))]",
+          "type": "Microsoft.EventHub/namespaces/authorizationRules",
+          "dependsOn": [
+            "[concat('Microsoft.EventHub/namespaces/', parameters('ServiceBusNamespace'))]"
+          ],
+          "location": "[resourceGroup().location]",
+          "properties": {
+            "KeyName": "ListenOnlyKey",
+            "ClaimType": "ReceiveSharedAccessKey",
+            "ClaimValue": "None",
+            "PrimaryKey": "[parameters('eventHubListenPrimaryKey')]",
+            "SecondaryKey": "[parameters('eventHubListenSecondaryKey')]",
+            "Rights": [ "Listen" ],
+            "Revision": -1
+          }
+        }
+      ],
+      "outputs": {
+        "ApiWebAppUri": {
+          "type": "string",
+          "value": "[concat('http://',reference(resourceId('Microsoft.Web/sites', variables('BioInfoAPIApplicationName'))).hostNames[0])]"
+        },
+        "AdminWebAppUri": {
+          "type": "string",
+          "value": "[concat('http://',reference(resourceId('Microsoft.Web/sites', variables('BioInfoAdminApplicationName'))).hostNames[0])]"
+        },
+        "ExternalWebAppUri": {
+          "type": "string",
+          "value": "[concat('http://',reference(resourceId('Microsoft.Web/sites', variables('BioInfoExternalApplicationName'))).hostNames[0])]"
+        }
+      }
     }
-  }
-}
