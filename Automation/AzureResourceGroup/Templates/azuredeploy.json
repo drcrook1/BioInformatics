@@ -1,7 +1,15 @@
 ﻿{
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "parameters": { },
+  "parameters": {
+    "DeploymentMode": {
+      "type": "string",
+      "allowedValues": [
+        "Incremental",
+        "Complete"
+      ]
+    }
+  },
   "variables": {
     "ResourceDeploymentApiVersion": "2015-01-01",
     "DataLakeTemplateUrl": "[uri(deployment().properties.templateLink.uri, '/datalake/deployment.json')]",
@@ -17,7 +25,8 @@
     {
       "apiVersion": "[variables('ResourceDeploymentApiVersion')]",
       "name": "DataLakeTemplate",
-      "type": "Microsoft.Resources/deployments",
+      "type": "[parameters('DeploymentMode')]",
+      "mode": "[parameters('DeploymentMode')]",
       "properties": {
         "templateLink": {
           "uri": "[variables('DataLakeTemplateUrl')]",
