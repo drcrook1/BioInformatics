@@ -8,26 +8,29 @@
         "Incremental",
         "Complete"
       ]
+    },
+    "TemplateBaseUri": {
+      "type": "string"
     }
   },
   "variables": {
     "ResourceDeploymentApiVersion": "2015-01-01",
-    "DataLakeTemplateUrl": "[uri(deployment().properties.templateLink.uri, 'datalake/deployment.json')]",
-    "DataLakeParameterUrl": "[uri(deployment().properties.templateLink.uri, 'datalake/parameters.json')]",
+    "DataLakeTemplateUrl": "[concat(parameters('TemplateBaseUri'), '/datalake/deployment.json')]",
+    "DataLakeParameterUrl": "[concat(parameters('TemplateBaseUri'), '/datalake/parameters.json')]",
 
-    "IoTHubTemplateUrl": "[uri(deployment().properties.templateLink.uri, '/iothub/deployment.json')]",
-    "IoTHubParameterUrl": "[uri(deployment().properties.templateLink.uri, '/iothub/parameters.json')]",
+    "IoTHubTemplateUrl": "[concat(parameters('TemplateBaseUri'), '/iothub/deployment.json')]",
+    "IoTHubParameterUrl": "[concat(parameters('TemplateBaseUri'), '/iothub/parameters.json')]",
 
-    "ServiceBusQueueTemplateUrl": "[uri(deployment().properties.templateLink.uri, '/servicebusqueue/deployment.json')]",
-    "ServiceBusQueueParameterUrl": "[uri(deployment().properties.templateLink.uri, '/servicebusqueue/parameters.json')]"
+    "ServiceBusQueueTemplateUrl": "[concat(parameters('TemplateBaseUri'), '/servicebusqueue/deployment.json')]",
+    "ServiceBusQueueParameterUrl": "[concat(parameters('TemplateBaseUri'), '/servicebusqueue/parameters.json')]"
   },
   "resources": [
     {
       "apiVersion": "[variables('ResourceDeploymentApiVersion')]",
       "name": "DataLakeTemplate",
-      "type": "[parameters('DeploymentMode')]",
-      "mode": "[parameters('DeploymentMode')]",
+      "type": "Microsoft.Resources/deployments",
       "properties": {
+        "mode": "[parameters('DeploymentMode')]",
         "templateLink": {
           "uri": "[variables('DataLakeTemplateUrl')]",
           "contentVersion": "1.0.0.0"

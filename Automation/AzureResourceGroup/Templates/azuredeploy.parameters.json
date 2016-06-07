@@ -4,6 +4,9 @@
   "parameters": {
     "DeploymentMode": {
       "value": "Incremental"
+    },
+    "TemplateBaseUri": {
+      "value": "https://raw.githubusercontent.com/drcrook1/BioInformatics/master/Automation/AzureResourceGroup/Templates"
     }
   }
 }
