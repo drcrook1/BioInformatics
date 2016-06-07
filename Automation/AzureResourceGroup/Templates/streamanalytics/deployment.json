@@ -1,0 +1,72 @@
+﻿{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "ServiceBusNamespace": {
+      "type": "string",
+      "minLength": 3
+    }
+  },
+  "variables": { },
+  "resources": [
+    //// Create Stream Analytics Job (Event Hub to Data Lake)
+    {
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "eventsOutOfOrderMaxDelayInSeconds": 10,
+        "eventsOutOfOrderPolicy": "drop",
+        "inputs": [
+          {
+            "name": "EventHubSource",
+            "properties": {
+              "type": "stream",
+              "serialization": {
+                "type": "JSON",
+                "properties": {
+                  "encoding": "UTF8"
+                }
+              },
+              "datasource": {
+                "type": "Microsoft.ServiceBus/EventHub",
+                "properties": {
+                  "eventHubName": "[parameters('EventHubName')]",
+                  "serviceBusNamespace": "[parameters('ServiceBusNamespace')]",
+                  "sharedAccessPolicyKey": "[parameters('eventHubListenPrimaryKey')]",
+                  "sharedAccessPolicyName": "ListenOnlyKey"
+                }
+              }
+            }
+          }
+        ],
+        "outputs": [
+          {
+            "name": "output",
+            "properties": {
+              "datasource": {
+                "type": "Microsoft.Sql/Server/Database",
+                "properties": {
+                  "server": "sampleserver.database.windows.net",
+                  "database": "sampleDB",
+                  "table": "sampleTable",
+                  "user": "user@sampleserver",
+                  "password": "****************"
+                }
+              }
+            }
+          }
+        ],
+        "sku": {
+          "name": "standard"
+        },
+        "transformation": {
+          "name": "ProcessSampleData",
+          "properties": {
+            "streamingUnits": 1,
+            "query": "select * from MyEventHubSource"
+          }
+        }
+      }
+    }
+  ],
+  "outputs": { }
+}

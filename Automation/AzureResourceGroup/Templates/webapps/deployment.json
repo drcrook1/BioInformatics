@@ -1,0 +1,209 @@
+﻿{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "BioInfoAdminApplicationFarmName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "BioInfoAdminApplicationFarmSKU": {
+      "type": "string",
+      "allowedValues": [
+        "Free",
+        "Shared",
+        "Basic",
+        "Standard"
+      ],
+      "defaultValue": "Free"
+    },
+    "BioInfoAdminApplicationFarmWorkerSize": {
+      "type": "string",
+      "allowedValues": [
+        "0",
+        "1",
+        "2"
+      ],
+      "defaultValue": "0"
+    },
+    "BioInfoAPIApplicationFarmName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "BioInfoAPIApplicationFarmSKU": {
+      "type": "string",
+      "allowedValues": [
+        "Free",
+        "Shared",
+        "Basic",
+        "Standard"
+      ],
+      "defaultValue": "Free"
+    },
+    "BioInfoAPIApplicationFarmWorkerSize": {
+      "type": "string",
+      "allowedValues": [
+        "0",
+        "1",
+        "2"
+      ],
+      "defaultValue": "0"
+    },
+    "BioInfoExternalApplicationFarmName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "BioInfoExternalApplicationFarmSKU": {
+      "type": "string",
+      "allowedValues": [
+        "Free",
+        "Shared",
+        "Basic",
+        "Standard"
+      ],
+      "defaultValue": "Free"
+    },
+    "BioInfoExternalApplicationFarmWorkerSize": {
+      "type": "string",
+      "allowedValues": [
+        "0",
+        "1",
+        "2"
+      ],
+      "defaultValue": "0"
+    },
+    "NumberOfAdminApplicationFarmWorkers": {
+      "type": "int",
+      "defaultValue": 1
+    },
+    "NumberOfAPIApplicationFarmWorkers": {
+      "type": "int",
+      "defaultValue": 1
+    },
+    "NumberOfExternalApplicationFarmWrokers": {
+      "type": "int",
+      "defaultValue": 1
+    }
+  },
+  "variables": {
+    "WebAppApiVersion": "2015-08-01",
+    "AppServicePlanApiVersion": "2014-06-01",
+    "BioInfoAPIApplicationName": "[concat('BioInfoAPIApplication', uniqueString(resourceGroup().id))]",
+    "BioInfoAdminApplicationName": "[concat('BioInfoAdminApplication', uniqueString(resourceGroup().id))]",
+    "BioInfoExternalApplicationName": "[concat('BioInfoExternalApplication', uniqueString(resourceGroup().id))]"
+  },
+  "resources": [
+    {
+      "apiVersion": "[variables('AppServicePlanApiVersion')]",
+      "dependsOn": [ ],
+      "location": "[resourceGroup().location]",
+      "name": "[parameters('BioInfoAPIApplicationFarmName')]",
+      "properties": {
+        "name": "[parameters('BioInfoAPIApplicationFarmName')]",
+        "sku": "[parameters('BioInfoAPIApplicationFarmSKU')]",
+        "workerSize": "[parameters('BioInfoAPIApplicationFarmWorkerSize')]",
+        "numberOfWorkers": "[parameters('NumberOfAPIApplicationFarmWorkers')]"
+      },
+      "tags": {
+        "displayName": "BioInfoAPIApplicationFarm"
+      },
+      "type": "Microsoft.Web/serverfarms"
+    },
+    {
+      "apiVersion": "[variables('WebAppApiVersion')]",
+      "dependsOn": [
+        "[concat('Microsoft.Web/serverfarms/', parameters('BioInfoAPIApplicationFarmName'))]"
+      ],
+      "location": "[resourceGroup().location]",
+      "name": "[variables('BioInfoAPIApplicationName')]",
+      "properties": {
+        "name": "[variables('BioInfoAPIApplicationName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms/', parameters('BioInfoAPIApplicationFarmName'))]"
+      },
+      "tags": {
+        "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('BioInfoAPIApplicationFarmName'))]": "Resource",
+        "displayName": "BioInfoAPIApplication"
+      },
+      "type": "Microsoft.Web/sites"
+    },
+    {
+      "apiVersion": "[variables('AppServicePlanApiVersion')]",
+      "dependsOn": [ ],
+      "location": "[resourceGroup().location]",
+      "name": "[parameters('BioInfoAdminApplicationFarmName')]",
+      "properties": {
+        "name": "[parameters('BioInfoAdminApplicationFarmName')]",
+        "sku": "[parameters('BioInfoAdminApplicationFarmSKU')]",
+        "workerSize": "[parameters('BioInfoAdminApplicationFarmWorkerSize')]",
+        "numberOfWorkers": "[parameters('NumberOfAdminApplicationFarmWorkers')]"
+      },
+      "tags": {
+        "displayName": "BioInfoAdminApplicationFarm"
+      },
+      "type": "Microsoft.Web/serverfarms"
+    },
+    {
+      "apiVersion": "[variables('WebAppApiVersion')]",
+      "dependsOn": [
+        "[concat('Microsoft.Web/serverfarms/', parameters('BioInfoAdminApplicationFarmName'))]"
+      ],
+      "location": "[resourceGroup().location]",
+      "name": "[variables('BioInfoAdminApplicationName')]",
+      "properties": {
+        "name": "[variables('BioInfoAdminApplicationName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms/', parameters('BioInfoAdminApplicationFarmName'))]"
+      },
+      "tags": {
+        "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('BioInfoAdminApplicationFarmName'))]": "Resource",
+        "displayName": "BioInfoAdminApplication"
+      },
+      "type": "Microsoft.Web/sites"
+    },
+    {
+      "apiVersion": "[variables('AppServicePlanApiVersion')]",
+      "dependsOn": [ ],
+      "location": "[resourceGroup().location]",
+      "name": "[parameters('BioInfoExternalApplicationFarmName')]",
+      "properties": {
+        "name": "[parameters('BioInfoExternalApplicationFarmName')]",
+        "sku": "[parameters('BioInfoExternalApplicationFarmSKU')]",
+        "workerSize": "[parameters('BioInfoExternalApplicationFarmWorkerSize')]",
+        "numberOfWorkers": "[parameters('NumberOfExternalApplicationFarmWrokers')]"
+      },
+      "tags": {
+        "displayName": "BioInfoExternalApplicationFarm"
+      },
+      "type": "Microsoft.Web/serverfarms"
+    },
+    {
+      "apiVersion": "[variables('WebAppApiVersion')]",
+      "dependsOn": [
+        "[concat('Microsoft.Web/serverfarms/', parameters('BioInfoExternalApplicationFarmName'))]"
+      ],
+      "location": "[resourceGroup().location]",
+      "name": "[variables('BioInfoExternalApplicationName')]",
+      "properties": {
+        "name": "[variables('BioInfoExternalApplicationName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms/', parameters('BioInfoExternalApplicationFarmName'))]"
+      },
+      "tags": {
+        "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('BioInfoExternalApplicationFarmName'))]": "Resource",
+        "displayName": "BioInfoExternalApplication"
+      },
+      "type": "Microsoft.Web/sites"
+    }
+  ],
+  "outputs": {
+    "ApiWebAppUri": {
+      "type": "string",
+      "value": "[concat('http://',reference(resourceId('Microsoft.Web/sites', variables('BioInfoAPIApplicationName'))).hostNames[0])]"
+    },
+    "AdminWebAppUri": {
+      "type": "string",
+      "value": "[concat('http://',reference(resourceId('Microsoft.Web/sites', variables('BioInfoAdminApplicationName'))).hostNames[0])]"
+    },
+    "ExternalWebAppUri": {
+      "type": "string",
+      "value": "[concat('http://',reference(resourceId('Microsoft.Web/sites', variables('BioInfoExternalApplicationName'))).hostNames[0])]"
+    }
+  }
+}

@@ -1,0 +1,101 @@
+﻿{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "BioInfoDatabaseServerAdminLogin": {
+      "type": "string",
+      "minLength": 1
+    },
+    "BioInfoDatabaseServerAdminLoginPassword": {
+      "type": "securestring"
+    },
+    "BioInfoDatabaseName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "BioInfoDatabaseCollation": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "SQL_Latin1_General_CP1_CI_AS"
+    },
+    "BioInfoDatabaseEdition": {
+      "type": "string",
+      "defaultValue": "Basic",
+      "allowedValues": [
+        "Basic",
+        "Standard",
+        "Premium"
+      ]
+    },
+    "BioInfoDatabaseRequestedServiceObjectiveName": {
+      "type": "string",
+      "defaultValue": "Basic",
+      "allowedValues": [
+        "Basic",
+        "S0",
+        "S1",
+        "S2",
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "metadata": {
+        "description": "Describes the performance level for Edition"
+      }
+    }
+  },
+  "variables": {
+    "AzureSqlDatabaseApiVersion": "2014-04-01-preview",
+    "bioinfodatabaseserverName": "[concat('bioinfodatabaseserver', uniqueString(resourceGroup().id))]"
+  },
+  "resources": [
+    {
+      "apiVersion": "[variables('AzureSqlDatabaseApiVersion')]",
+      "dependsOn": [ ],
+      "location": "[resourceGroup().location]",
+      "name": "[variables('bioinfodatabaseserverName')]",
+      "properties": {
+        "administratorLogin": "[parameters('BioInfoDatabaseServerAdminLogin')]",
+        "administratorLoginPassword": "[parameters('BioInfoDatabaseServerAdminLoginPassword')]"
+      },
+      "resources": [
+        {
+          "apiVersion": "2014-04-01-preview",
+          "dependsOn": [
+            "[concat('Microsoft.Sql/servers/', variables('bioinfodatabaseserverName'))]"
+          ],
+          "location": "[resourceGroup().location]",
+          "name": "AllowAllWindowsAzureIps",
+          "properties": {
+            "startIpAddress": "0.0.0.0",
+            "endIpAddress": "0.0.0.0"
+          },
+          "type": "firewallrules"
+        },
+        {
+          "apiVersion": "2014-04-01-preview",
+          "dependsOn": [
+            "[variables('bioinfodatabaseserverName')]"
+          ],
+          "location": "[resourceGroup().location]",
+          "name": "[parameters('BioInfoDatabaseName')]",
+          "properties": {
+            "collation": "[parameters('BioInfoDatabaseCollation')]",
+            "edition": "[parameters('BioInfoDatabaseEdition')]",
+            "maxSizeBytes": "1073741824",
+            "requestedServiceObjectiveName": "[parameters('BioInfoDatabaseRequestedServiceObjectiveName')]"
+          },
+          "tags": {
+            "displayName": "BioInfoDatabase"
+          },
+          "type": "databases"
+        }
+      ],
+      "tags": {
+        "displayName": "BioInfoDatabaseServer"
+      },
+      "type": "Microsoft.Sql/servers"
+    }
+  ],
+  "outputs": { }
+}

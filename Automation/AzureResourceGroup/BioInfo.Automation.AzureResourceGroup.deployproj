@@ -35,6 +35,18 @@
     <Content Include="Templates\azuredeploy.json" />
     <Content Include="Templates\azuredeploy.parameters.json" />
     <None Include="Scripts\DeploymentParameters.json" />
+    <None Include="Templates\sqldatabase\deployment.json" />
+    <None Include="Templates\sqldatabase\parameters.json" />
+    <None Include="Templates\servicebusqueue\deployment.json" />
+    <None Include="Templates\servicebusqueue\parameters.json" />
+    <None Include="Templates\streamanalytics\deployment.json" />
+    <None Include="Templates\streamanalytics\parameters.json" />
+    <None Include="Templates\datalake\deployment.json" />
+    <None Include="Templates\datalake\parameters.json" />
+    <None Include="Templates\iothub\deployment.json" />
+    <None Include="Templates\iothub\parameters.json" />
+    <None Include="Templates\webapps\deployment.json" />
+    <None Include="Templates\webapps\parameters.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Tools\AzCopy.exe" />

@@ -1,0 +1,25 @@
+﻿{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "DataLakeStoreName": {
+      "type": "string",
+      "minLength": 3
+    }
+  },
+  "variables": {
+    "DataLakeApiVersion": "2015-10-01-preview"
+  },
+  "resources": [
+    {
+      "apiVersion": "[variables('DataLakeApiVersion')]",
+      "location": "[resourceGroup().location]",
+      "name": "[parameters('DataLakeStoreName')]",
+      "tags": {
+        "displayName": "BioInfoDataLake"
+      },
+      "type": "Microsoft.DataLakeStore/accounts"
+    }
+  ],
+  "outputs": { }
+}
