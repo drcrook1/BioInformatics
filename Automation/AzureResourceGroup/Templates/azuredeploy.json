@@ -12,8 +12,8 @@
   },
   "variables": {
     "ResourceDeploymentApiVersion": "2015-01-01",
-    "DataLakeTemplateUrl": "[uri(deployment().properties.templateLink.uri, '/datalake/deployment.json')]",
-    "DataLakeParameterUrl": "[uri(deployment().properties.templateLink.uri, '/datalake/parameters.json')]",
+    "DataLakeTemplateUrl": "[uri(deployment().properties.templateLink.uri, 'datalake/deployment.json')]",
+    "DataLakeParameterUrl": "[uri(deployment().properties.templateLink.uri, 'datalake/parameters.json')]",
 
     "IoTHubTemplateUrl": "[uri(deployment().properties.templateLink.uri, '/iothub/deployment.json')]",
     "IoTHubParameterUrl": "[uri(deployment().properties.templateLink.uri, '/iothub/parameters.json')]",
