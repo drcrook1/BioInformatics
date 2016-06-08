@@ -25,22 +25,43 @@
     "ServiceBusQueueParameterUrl": "[concat(parameters('TemplateBaseUri'), '/servicebusqueue/parameters.json')]"
   },
   "resources": [
+    //{
+    //  "apiVersion": "[variables('ResourceDeploymentApiVersion')]",
+    //  "name": "DataLakeTemplate",
+    //  "type": "Microsoft.Resources/deployments",
+    //  "properties": {
+    //    "mode": "[parameters('DeploymentMode')]",
+    //    "templateLink": {
+    //      "uri": "[variables('DataLakeTemplateUrl')]",
+    //      "contentVersion": "1.0.0.0"
+    //    },
+    //    "parametersLink": {
+    //      "uri": "[variables('DataLakeParameterUrl')]",
+    //      "contentVersion": "1.0.0.0"
+    //    }
+    //  }
+    //},
     {
       "apiVersion": "[variables('ResourceDeploymentApiVersion')]",
-      "name": "DataLakeTemplate",
+      "name": "IoTHubTemplate",
       "type": "Microsoft.Resources/deployments",
       "properties": {
         "mode": "[parameters('DeploymentMode')]",
         "templateLink": {
-          "uri": "[variables('DataLakeTemplateUrl')]",
+          "uri": "[variables('IoTHubTemplateUrl')]",
           "contentVersion": "1.0.0.0"
         },
         "parametersLink": {
-          "uri": "[variables('DataLakeParameterUrl')]",
+          "uri": "[variables('IoTHubParameterUrl')]",
           "contentVersion": "1.0.0.0"
         }
       }
     }
   ],
-  "outputs": { }
+  "outputs": {
+    "iotHubKeys": {
+      "value": "[reference('IoTHubTemplate').outputs]",
+      "type": "object"
+    }
+  }
 }

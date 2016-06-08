@@ -2,26 +2,26 @@
   "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "IoTHubAdminPolicyPrimaryKey": {
-      "type": "string",
-      "minLength": 43,
-      "maxLength": 43
-    },
-    "IoTHubAdminPolicySecondaryKey": {
-      "type": "string",
-      "minLength": 43,
-      "maxLength": 43
-    },
-    "IoTHubDeviceConnectionPrimaryKey": {
-      "type": "string",
-      "minLength": 43,
-      "maxLength": 43
-    },
-    "IoTHubDeviceConnectionSecondaryKey": {
-      "type": "string",
-      "minLength": 43,
-      "maxLength": 43
-    },
+    //"IoTHubAdminPolicyPrimaryKey": {
+    //  "type": "string",
+    //  "minLength": 43,
+    //  "maxLength": 43
+    //},
+    //"IoTHubAdminPolicySecondaryKey": {
+    //  "type": "string",
+    //  "minLength": 43,
+    //  "maxLength": 43
+    //},
+    //"IoTHubDeviceConnectionPrimaryKey": {
+    //  "type": "string",
+    //  "minLength": 43,
+    //  "maxLength": 43
+    //},
+    //"IoTHubDeviceConnectionSecondaryKey": {
+    //  "type": "string",
+    //  "minLength": 43,
+    //  "maxLength": 43
+    //},
     "IoTHubMessageRetentionInDaysPeriod": {
       "type": "int",
       "defaultValue": 7,
@@ -36,16 +36,16 @@
       "type": "int",
       "defaultValue": 1
     },
-    "IoTHubServiceConnectionPrimaryKey": {
-      "type": "string",
-      "minLength": 43,
-      "maxLength": 43
-    },
-    "IoTHubServiceConnectionSecondaryKey": {
-      "type": "string",
-      "minLength": 43,
-      "maxLength": 43
-    },
+    //"IoTHubServiceConnectionPrimaryKey": {
+    //  "type": "string",
+    //  "minLength": 43,
+    //  "maxLength": 43
+    //},
+    //"IoTHubServiceConnectionSecondaryKey": {
+    //  "type": "string",
+    //  "minLength": 43,
+    //  "maxLength": 43
+    //},
     "IoTHubSKU": {
       "type": "string",
       "allowedValues": [
@@ -75,8 +75,8 @@
         "authorizationPolicies": [
           {
             "name": "[variables('IoTHubAdminPolicyName')]",
-            "primaryKey": "[parameters('IoTHubAdminPolicyPrimaryKey')]",
-            "secondaryKey": "[parameters('IoTHubAdminPolicySecondaryKey')]",
+            //"primaryKey": "[parameters('IoTHubAdminPolicyPrimaryKey')]",
+            //"secondaryKey": "[parameters('IoTHubAdminPolicySecondaryKey')]",
             "permissions": [
               "ServiceConnect",
               "RegistryRead",
@@ -86,16 +86,16 @@
           },
           {
             "name": "[variables('IoTHubDeviceConnectionPolicyName')]",
-            "primaryKey": "[parameters('IoTHubDeviceConnectionPrimaryKey')]",
-            "secondaryKey": "[parameters('IoTHubDeviceConnectionSecondaryKey')]",
+            //"primaryKey": "[parameters('IoTHubDeviceConnectionPrimaryKey')]",
+            //"secondaryKey": "[parameters('IoTHubDeviceConnectionSecondaryKey')]",
             "permissions": [
               "DeviceConnect"
             ]
           },
           {
             "name": "[variables('IoTHubServiceConnectPolicyName')]",
-            "primaryKey": "[parameters('IoTHubServiceConnectionPrimaryKey')]",
-            "secondaryKey": "[parameters('IoTHubServiceConnectionSecondaryKey')]",
+            //"primaryKey": "[parameters('IoTHubServiceConnectionPrimaryKey')]",
+            //"secondaryKey": "[parameters('IoTHubServiceConnectionSecondaryKey')]",
             "permissions": [
               "ServiceConnect"
             ]
@@ -142,5 +142,10 @@
       "type": "Microsoft.Devices/IotHubs/eventhubEndpoints/ConsumerGroups"
     }
   ],
-  "outputs": { }
+  "outputs": {
+    "iotHubKeys": {
+      "value": "[listKeys(resourceId('Microsoft.Devices/IotHubs', parameters('IoTHubName')), variables('IoTHubApiVersion'))]",
+      "type": "object"
+    }
+  }
 }
