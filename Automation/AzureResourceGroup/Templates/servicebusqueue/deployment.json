@@ -2,6 +2,9 @@
   "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "SimpleSample": {
+      "type": "string"
+    },
     "ServiceBusNamespaceName": {
       "type": "string"
     },
@@ -18,7 +21,9 @@
     }
   },
   "variables": {
-    "ServiceBusQueueApiVersion": "2015-08-01"
+    "ServiceBusQueueApiVersion": "2015-08-01",
+    "DefaultSASKeyName": "RootManageSharedAccessKey",
+    "AuthRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', parameters('ServiceBusNamespaceName'), variables('DefaultSASKeyName'))]"
   },
   "resources": [
     {
@@ -46,5 +51,14 @@
       ]
     }
   ],
-  "outputs": { }
+  "outputs": {
+    "NamespaceConnectionString": {
+      "type": "string",
+      "value": "[listkeys(variables('AuthRuleResourceId'), variables('ServiceBusQueueApiVersion')).primaryConnectionString]"
+    },
+    "SharedAccessPolicyPrimaryKey": {
+      "type": "string",
+      "value": "[listkeys(variables('AuthRuleResourceId'), variables('ServiceBusQueueApiVersion')).primaryKey]"
+    }
+  }
 }
