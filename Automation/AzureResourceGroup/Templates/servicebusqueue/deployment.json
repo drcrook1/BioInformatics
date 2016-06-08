@@ -42,7 +42,6 @@
           "properties": {
             "path": "[parameters('ServiceBusQueueName')]"
           }
-          ]
         }
       ]
     }
