@@ -79,7 +79,7 @@
     }
   ],
   "outputs": {
-    "iotHubKeys": {
+    "IoTHubKeys": {
       "value": "[listKeys(resourceId('Microsoft.Devices/IotHubs', parameters('IoTHubName')), variables('IoTHubApiVersion'))]",
       "type": "object"
     }

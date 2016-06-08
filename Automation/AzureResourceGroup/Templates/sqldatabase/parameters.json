@@ -1,5 +1,24 @@
 ﻿{
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
-  "parameters": { }
+  "parameters": {
+    "BioInfoDatabaseServerAdminLogin": {
+      "value": "bioinfo"
+    },
+    "BioInfoDatabaseServerAdminLoginPassword": {
+      "value": "P@ssw0rd"
+    },
+    "BioInfoDatabaseName": {
+      "value": "bioinfodatabase"
+    },
+    "BioInfoDatabaseCollation": {
+      "value": "SQL_Latin1_General_CP1_CI_AS"
+    },
+    "BioInfoDatabaseEdition": {
+      "value": "Basic"
+    },
+    "BioInfoDatabaseRequestedServiceObjectiveName": {
+      "value": "Basic"
+    }
+  }
 }

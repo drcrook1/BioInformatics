@@ -22,12 +22,15 @@
     "IoTHubParameterUrl": "[concat(parameters('TemplateBaseUri'), '/iothub/parameters.json')]",
 
     "ServiceBusQueueTemplateUrl": "[concat(parameters('TemplateBaseUri'), '/servicebusqueue/deployment.json')]",
-    "ServiceBusQueueParameterUrl": "[concat(parameters('TemplateBaseUri'), '/servicebusqueue/parameters.json')]"
+    "ServiceBusQueueParameterUrl": "[concat(parameters('TemplateBaseUri'), '/servicebusqueue/parameters.json')]",
+
+    "AzureSqlDatbaseTemplateUrl": "[concat(parameters('TemplateBaseUri'), '/sqldatabase/deployment.json')]",
+    "AzureSqlDatbaseParameterUrl": "[concat(parameters('TemplateBaseUri'), '/sqldatabase/parameters.json')]"
   },
   "resources": [
     {
       "apiVersion": "[variables('ResourceDeploymentApiVersion')]",
-      "name": "IoTHubTemplate",
+      "name": "IoTHub",
       "type": "Microsoft.Resources/deployments",
       "properties": {
         "mode": "[parameters('DeploymentMode')]",
@@ -56,11 +59,27 @@
           "contentVersion": "1.0.0.0"
         }
       }
+    },
+    {
+      "apiVersion": "[variables('ResourceDeploymentApiVersion')]",
+      "name": "AzureSqlDatabase",
+      "type": "Microsoft.Resources/deployments",
+      "properties": {
+        "mode": "[parameters('DeploymentMode')]",
+        "templateLink": {
+          "uri": "[variables('AzureSqlDatbaseTemplateUrl')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parametersLink": {
+          "uri": "[variables('AzureSqlDatbaseParameterUrl')]",
+          "contentVersion": "1.0.0.0"
+        }
+      }
     }
   ],
   "outputs": {
-    "iotHubKeys": {
-      "value": "[reference('IoTHubTemplate').outputs.iotHubKeys]",
+    "IoTHubKeys": {
+      "value": "[reference('IoTHubTemplate').outputs.IoTHubKeys]",
       "type": "object"
     }
   }

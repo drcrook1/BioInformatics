@@ -46,14 +46,14 @@
   },
   "variables": {
     "AzureSqlDatabaseApiVersion": "2014-04-01-preview",
-    "bioinfodatabaseserverName": "[concat('bioinfodatabaseserver', uniqueString(resourceGroup().id))]"
+    "BioInfoDatabaseServerName": "[concat('bioinfodatabaseserver', uniqueString(resourceGroup().id))]"
   },
   "resources": [
     {
       "apiVersion": "[variables('AzureSqlDatabaseApiVersion')]",
       "dependsOn": [ ],
       "location": "[resourceGroup().location]",
-      "name": "[variables('bioinfodatabaseserverName')]",
+      "name": "[variables('BioInfoDatabaseServerName')]",
       "properties": {
         "administratorLogin": "[parameters('BioInfoDatabaseServerAdminLogin')]",
         "administratorLoginPassword": "[parameters('BioInfoDatabaseServerAdminLoginPassword')]"
@@ -62,7 +62,7 @@
         {
           "apiVersion": "2014-04-01-preview",
           "dependsOn": [
-            "[concat('Microsoft.Sql/servers/', variables('bioinfodatabaseserverName'))]"
+            "[concat('Microsoft.Sql/servers/', variables('BioInfoDatabaseServerName'))]"
           ],
           "location": "[resourceGroup().location]",
           "name": "AllowAllWindowsAzureIps",
@@ -75,7 +75,7 @@
         {
           "apiVersion": "2014-04-01-preview",
           "dependsOn": [
-            "[variables('bioinfodatabaseserverName')]"
+            "[variables('BioInfoDatabaseServerName')]"
           ],
           "location": "[resourceGroup().location]",
           "name": "[parameters('BioInfoDatabaseName')]",
@@ -97,5 +97,10 @@
       "type": "Microsoft.Sql/servers"
     }
   ],
-  "outputs": { }
+  "outputs": {
+    "DatabaseConnectionString": {
+      "type": "string",
+      "value": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', variables('BioInfoDatabaseServerName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('BioInfoDatabaseName'), ';User Id=', parameters('BioInfoDatabaseServerAdminLogin'), '@', parameters('BioInfoDatabaseName'), ';Password=', parameters('BioInfoDatabaseServerAdminLoginPassword'), ';')]"
+    }
+  }
 }
