@@ -54,9 +54,6 @@
         "parametersLink": {
           "uri": "[variables('ServiceBusQueueParameterUrl')]",
           "contentVersion": "1.0.0.0"
-        },
-        "parameters": {
-          "SimpleSample": { "value": "sample" }
         }
       }
     }
