@@ -31,9 +31,6 @@
     }
   },
   "variables": {
-    "IoTHubAdminPolicyName": "Administration",
-    "IoTHubDeviceConnectionPolicyName": "DeviceConnect",
-    "IoTHubServiceConnectPolicyName": "ServiceConnect",
     "IoTHubApiVersion": "2016-02-03"
   },
   "resources": [
@@ -42,42 +39,17 @@
       "location": "[resourceGroup().location]",
       "name": "[parameters('IoTHubName')]",
       "properties": {
-        "authorizationPolicies": [
-          {
-            "name": "[variables('IoTHubAdminPolicyName')]",
-            "permissions": [
-              "ServiceConnect",
-              "RegistryRead",
-              "RegistryWrite",
-              "DeviceConnect"
-            ]
-          },
-          {
-            "name": "[variables('IoTHubDeviceConnectionPolicyName')]",
-            "permissions": [
-              "DeviceConnect"
-            ]
-          },
-          {
-            "name": "[variables('IoTHubServiceConnectPolicyName')]",
-            "permissions": [
-              "ServiceConnect"
-            ]
-          }
-        ],
         "eventHubEndpoints": {
           "events": {
-            "messageRetentionInDays": "[parameters('IoTHubMessageRetentionInDaysPeriod')]",
+            "retentionTimeInDays": "[parameters('IoTHubMessageRetentionInDaysPeriod')]",
             "partitionCount": "[parameters('IoTHubPartitionCount')]"
           }
-        }
+        },
+        "location": "[resourceGroup().location]"
       },
       "sku": {
         "name": "[parameters('IoTHubSKU')]",
         "capacity": "[parameters('CapacityOfIoTHub')]"
-      },
-      "tags": {
-        "displayName": "BioInfoIoTHub"
       },
       "type": "Microsoft.Devices/IotHubs"
     },

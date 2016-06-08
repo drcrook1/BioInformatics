@@ -2,18 +2,6 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    //"IoTHubAdminPolicyPrimaryKey": {
-    //  "value": ""
-    //},
-    //"IoTHubAdminPolicySecondaryKey": {
-    //  "value": ""
-    //},
-    //"IoTHubDeviceConnectionPrimaryKey": {
-    //  "value": ""
-    //},
-    //"IoTHubDeviceConnectionSecondaryKey": {
-    //  "value": ""
-    //},
     "IoTHubMessageRetentionInDaysPeriod": {
       "value": 7
     },
@@ -23,12 +11,6 @@
     "IoTHubPartitionCount": {
       "value": 4
     },
-    //"IoTHubServiceConnectionPrimaryKey": {
-    //  "value": ""
-    //},
-    //"IoTHubServiceConnectionSecondaryKey": {
-    //  "value": ""
-    //},
     "IoTHubSKU": {
       "value": "S1"
     },
