@@ -1,0 +1,54 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "DeploymentMode": {
+      "value": "Incremental"
+    },
+    "TemplateBaseUri": {
+      "value": "https://raw.githubusercontent.com/drcrook1/BioInformatics/master/Automation/AzureResourceGroup/Templates"
+    },
+    "IoTHubMessageRetentionInDaysPeriod": {
+      "value": 7
+    },
+    "IoTHubName": {
+      "value": "testhubrahulrai"
+    },
+    "IoTHubPartitionCount": {
+      "value": 4
+    },
+    "IoTHubSKU": {
+      "value": "S1"
+    },
+    "CapacityOfIoTHub": {
+      "value": 1
+    },
+    "ServiceBusNamespaceName": {
+      "value": "rahulraisbnamespace-ns"
+    },
+    "ServiceBusQueueName": {
+      "value": "bioinfo"
+    },
+    "ServiceBusSKU": {
+      "value": "Basic"
+    },
+    "BioInfoDatabaseServerAdminLogin": {
+      "value": "bioinfo"
+    },
+    "BioInfoDatabaseServerAdminLoginPassword": {
+      "value": "P@ssw0rd"
+    },
+    "BioInfoDatabaseName": {
+      "value": "bioinfodatabase"
+    },
+    "BioInfoDatabaseCollation": {
+      "value": "SQL_Latin1_General_CP1_CI_AS"
+    },
+    "BioInfoDatabaseEdition": {
+      "value": "Basic"
+    },
+    "BioInfoDatabaseRequestedServiceObjectiveName": {
+      "value": "Basic"
+    }
+  }
+}

@@ -190,7 +190,7 @@
   ],
   "outputs": {
     "IoTHubKeys": {
-      "value": "[reference('IoTHubTemplate').outputs.IoTHubKeys]",
+      "value": "[reference('IoTHub').outputs.IoTHubKeys]",
       "type": "object"
     }
   }
