@@ -149,10 +149,10 @@
             "value": "[parameters('ServiceBusNamespaceName')]"
           },
           "ServiceBusQueueName": {
-            "value": "[parameters('ServiceBusNamespaceName')]"
+            "value": "[parameters('ServiceBusQueueName')]"
           },
           "ServiceBusSKU": {
-            "value": "[parameters('ServiceBusNamespaceName')]"
+            "value": "[parameters('ServiceBusSKU')]"
           }
         }
       }
