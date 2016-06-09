@@ -11,21 +11,96 @@
     },
     "TemplateBaseUri": {
       "type": "string"
+    },
+    "IoTHubMessageRetentionInDaysPeriod": {
+      "type": "int",
+      "defaultValue": 7,
+      "minValue": 1,
+      "maxValue": 7
+    },
+    "IoTHubName": {
+      "type": "string",
+      "minLength": 3
+    },
+    "IoTHubPartitionCount": {
+      "type": "int",
+      "defaultValue": 1
+    },
+    "IoTHubSKU": {
+      "type": "string",
+      "allowedValues": [
+        "F1",
+        "S1",
+        "S2"
+      ],
+      "defaultValue": "F1"
+    },
+    "CapacityOfIoTHub": {
+      "type": "int",
+      "defaultValue": 1
+    },
+    "ServiceBusNamespaceName": {
+      "type": "string"
+    },
+    "ServiceBusQueueName": {
+      "type": "string"
+    },
+    "ServiceBusSKU": {
+      "type": "string",
+      "allowedValues": [
+        "Basic",
+        "Standard"
+      ],
+      "defaultValue": "Standard"
+    },
+    "BioInfoDatabaseServerAdminLogin": {
+      "type": "string",
+      "minLength": 1
+    },
+    "BioInfoDatabaseServerAdminLoginPassword": {
+      "type": "securestring"
+    },
+    "BioInfoDatabaseName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "BioInfoDatabaseCollation": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "SQL_Latin1_General_CP1_CI_AS"
+    },
+    "BioInfoDatabaseEdition": {
+      "type": "string",
+      "defaultValue": "Basic",
+      "allowedValues": [
+        "Basic",
+        "Standard",
+        "Premium"
+      ]
+    },
+    "BioInfoDatabaseRequestedServiceObjectiveName": {
+      "type": "string",
+      "defaultValue": "Basic",
+      "allowedValues": [
+        "Basic",
+        "S0",
+        "S1",
+        "S2",
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "metadata": {
+        "description": "Describes the performance level for Edition"
+      }
     }
   },
   "variables": {
     "ResourceDeploymentApiVersion": "2015-01-01",
     "DataLakeTemplateUrl": "[concat(parameters('TemplateBaseUri'), '/datalake/deployment.json')]",
-    "DataLakeParameterUrl": "[concat(parameters('TemplateBaseUri'), '/datalake/parameters.json')]",
-
     "IoTHubTemplateUrl": "[concat(parameters('TemplateBaseUri'), '/iothub/deployment.json')]",
-    "IoTHubParameterUrl": "[concat(parameters('TemplateBaseUri'), '/iothub/parameters.json')]",
-
     "ServiceBusQueueTemplateUrl": "[concat(parameters('TemplateBaseUri'), '/servicebusqueue/deployment.json')]",
-    "ServiceBusQueueParameterUrl": "[concat(parameters('TemplateBaseUri'), '/servicebusqueue/parameters.json')]",
-
-    "AzureSqlDatbaseTemplateUrl": "[concat(parameters('TemplateBaseUri'), '/sqldatabase/deployment.json')]",
-    "AzureSqlDatbaseParameterUrl": "[concat(parameters('TemplateBaseUri'), '/sqldatabase/parameters.json')]"
+    "AzureSqlDatbaseTemplateUrl": "[concat(parameters('TemplateBaseUri'), '/sqldatabase/deployment.json')]"
   },
   "resources": [
     {
@@ -38,9 +113,22 @@
           "uri": "[variables('IoTHubTemplateUrl')]",
           "contentVersion": "1.0.0.0"
         },
-        "parametersLink": {
-          "uri": "[variables('IoTHubParameterUrl')]",
-          "contentVersion": "1.0.0.0"
+        "parameters": {
+          "IoTHubMessageRetentionInDaysPeriod": {
+            "value": "[parameters('IoTHubMessageRetentionInDaysPeriod')]"
+          },
+          "IoTHubName": {
+            "value": "[parameters('IoTHubName')]"
+          },
+          "IoTHubPartitionCount": {
+            "value": "[parameters('IoTHubPartitionCount')]"
+          },
+          "IoTHubSKU": {
+            "value": "[parameters('IoTHubSKU')]"
+          },
+          "CapacityOfIoTHub": {
+            "value": "[parameters('CapacityOfIoTHub')]"
+          }
         }
       }
     },
@@ -54,9 +142,16 @@
           "uri": "[variables('ServiceBusQueueTemplateUrl')]",
           "contentVersion": "1.0.0.0"
         },
-        "parametersLink": {
-          "uri": "[variables('ServiceBusQueueParameterUrl')]",
-          "contentVersion": "1.0.0.0"
+        "parameters": {
+          "ServiceBusNamespaceName": {
+            "value": "[parameters('ServiceBusNamespaceName')]"
+          },
+          "ServiceBusQueueName": {
+            "value": "[parameters('ServiceBusNamespaceName')]"
+          },
+          "ServiceBusSKU": {
+            "value": "[parameters('ServiceBusNamespaceName')]"
+          }
         }
       }
     },
@@ -70,9 +165,25 @@
           "uri": "[variables('AzureSqlDatbaseTemplateUrl')]",
           "contentVersion": "1.0.0.0"
         },
-        "parametersLink": {
-          "uri": "[variables('AzureSqlDatbaseParameterUrl')]",
-          "contentVersion": "1.0.0.0"
+        "parameters": {
+          "BioInfoDatabaseServerAdminLogin": {
+            "value": "[parameters('BioInfoDatabaseServerAdminLogin')]"
+          },
+          "BioInfoDatabaseServerAdminLoginPassword": {
+            "value": "[parameters('BioInfoDatabaseServerAdminLoginPassword')]"
+          },
+          "BioInfoDatabaseName": {
+            "value": "[parameters('BioInfoDatabaseName')]"
+          },
+          "BioInfoDatabaseCollation": {
+            "value": "[parameters('BioInfoDatabaseCollation')]"
+          },
+          "BioInfoDatabaseEdition": {
+            "value": "[parameters('BioInfoDatabaseEdition')]"
+          },
+          "BioInfoDatabaseRequestedServiceObjectiveName": {
+            "value": "[parameters('BioInfoDatabaseRequestedServiceObjectiveName')]"
+          }
         }
       }
     }
