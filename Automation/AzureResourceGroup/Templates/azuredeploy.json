@@ -275,15 +275,15 @@
       "apiVersion": "[variables('ResourceDeploymentApiVersion')]",
       "name": "BioInfoWebApplications",
       "type": "Microsoft.Resources/deployments",
+      "dependsOn": [
+        "[concat('Microsoft.Resources/deployments/', 'AzureSqlDatabase')]"
+      ],
       "properties": {
         "mode": "[parameters('DeploymentMode')]",
         "templateLink": {
           "uri": "[variables('WebAppsTemplateUrl')]",
           "contentVersion": "1.0.0.0"
         },
-        "dependsOn": [
-          "[concat('Microsoft.Resources/deployments/', 'AzureSqlDatabase')]"
-        ],
         "parameters": {
           "BioInfoAdminApplicationFarmName": {
             "value": "[parameters('BioInfoAdminApplicationFarmName')]"
