@@ -7,10 +7,12 @@
       "allowedValues": [
         "Incremental",
         "Complete"
-      ]
+      ],
+      "defaultValue": "Incremental"
     },
     "TemplateBaseUri": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "https://raw.githubusercontent.com/drcrook1/BioInformatics/master/Automation/AzureResourceGroup/Templates"
     },
     "IoTHubMessageRetentionInDaysPeriod": {
       "type": "int",
