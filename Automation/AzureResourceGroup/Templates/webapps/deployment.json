@@ -82,6 +82,9 @@
     "NumberOfExternalApplicationFarmWrokers": {
       "type": "int",
       "defaultValue": 1
+    },
+    "BioInfoDatabaseConnectionString": {
+      "type": "string"
     }
   },
   "variables": {
@@ -123,7 +126,23 @@
         "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('BioInfoAPIApplicationFarmName'))]": "Resource",
         "displayName": "BioInfoAPIApplication"
       },
-      "type": "Microsoft.Web/sites"
+      "type": "Microsoft.Web/sites",
+      "resources": [
+        {
+          "apiVersion": "[variables('WebAppApiVersion')]",
+          "type": "config",
+          "name": "connectionstrings",
+          "dependsOn": [
+            "[variables('BioInfoAPIApplicationName')]"
+          ],
+          "properties": {
+            "DefaultConnection": {
+              "value": "[parameters('BioInfoDatabaseConnectionString')]",
+              "type": "SQLServer"
+            }
+          }
+        }
+      ]
     },
     {
       "apiVersion": "[variables('AppServicePlanApiVersion')]",
@@ -156,7 +175,23 @@
         "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('BioInfoAdminApplicationFarmName'))]": "Resource",
         "displayName": "BioInfoAdminApplication"
       },
-      "type": "Microsoft.Web/sites"
+      "type": "Microsoft.Web/sites",
+      "resources": [
+        {
+          "apiVersion": "[variables('WebAppApiVersion')]",
+          "type": "config",
+          "name": "connectionstrings",
+          "dependsOn": [
+            "[variables('BioInfoAdminApplicationName')]"
+          ],
+          "properties": {
+            "DefaultConnection": {
+              "value": "[parameters('BioInfoDatabaseConnectionString')]",
+              "type": "SQLServer"
+            }
+          }
+        }
+      ]
     },
     {
       "apiVersion": "[variables('AppServicePlanApiVersion')]",
@@ -189,7 +224,23 @@
         "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('BioInfoExternalApplicationFarmName'))]": "Resource",
         "displayName": "BioInfoExternalApplication"
       },
-      "type": "Microsoft.Web/sites"
+      "type": "Microsoft.Web/sites",
+      "resources": [
+        {
+          "apiVersion": "[variables('WebAppApiVersion')]",
+          "type": "config",
+          "name": "connectionstrings",
+          "dependsOn": [
+            "[variables('BioInfoExternalApplicationName')]"
+          ],
+          "properties": {
+            "DefaultConnection": {
+              "value": "[parameters('BioInfoDatabaseConnectionString')]",
+              "type": "SQLServer"
+            }
+          }
+        }
+      ]
     }
   ],
   "outputs": {

@@ -2,20 +2,44 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "BioInfoAPIApplicationFarmName": {
-      "value": "bioinfoapifarm3434"
-    },
-    "BioInfoAPIApplicationFarmWorkerSize": {
-      "value": "1"
-    },
     "BioInfoAdminApplicationFarmName": {
-      "value": "bioinfoappfarm232323"
+      "value": "bioinfoadmin"
+    },
+    "BioInfoAdminApplicationFarmSKU": {
+      "value": "Basic"
     },
     "BioInfoAdminApplicationFarmWorkerSize": {
       "value": "1"
     },
+    "BioInfoAPIApplicationFarmName": {
+      "value": "bioinfoapi"
+    },
+    "BioInfoAPIApplicationFarmSKU": {
+      "value": "Basic"
+    },
+    "BioInfoAPIApplicationFarmWorkerSize": {
+      "value": "1"
+    },
     "BioInfoExternalApplicationFarmName": {
-      "value": "extappfarm12312313"
+      "value": "bioinfoexternal"
+    },
+    "BioInfoExternalApplicationFarmSKU": {
+      "value": "Basic"
+    },
+    "BioInfoExternalApplicationFarmWorkerSize": {
+      "value": "1"
+    },
+    "NumberOfAdminApplicationFarmWorkers": {
+      "value": "1"
+    },
+    "NumberOfAPIApplicationFarmWorkers": {
+      "value": "1"
+    },
+    "NumberOfExternalApplicationFarmWrokers": {
+      "value": "1"
+    },
+    "BioInfoDatabaseConnectionString": {
+      "value": "testValue"
     }
   }
 }

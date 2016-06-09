@@ -60,7 +60,7 @@
       },
       "resources": [
         {
-          "apiVersion": "2014-04-01-preview",
+          "apiVersion": "[variables('AzureSqlDatabaseApiVersion')]",
           "dependsOn": [
             "[concat('Microsoft.Sql/servers/', variables('BioInfoDatabaseServerName'))]"
           ],
@@ -73,7 +73,7 @@
           "type": "firewallrules"
         },
         {
-          "apiVersion": "2014-04-01-preview",
+          "apiVersion": "[variables('AzureSqlDatabaseApiVersion')]",
           "dependsOn": [
             "[variables('BioInfoDatabaseServerName')]"
           ],
