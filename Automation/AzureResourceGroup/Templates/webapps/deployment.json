@@ -131,15 +131,12 @@
         {
           "apiVersion": "[variables('WebAppApiVersion')]",
           "type": "config",
-          "name": "connectionstrings",
+          "name": "appsettings",
           "dependsOn": [
             "[variables('BioInfoAPIApplicationName')]"
           ],
           "properties": {
-            "DefaultConnection": {
-              "value": "[parameters('BioInfoDatabaseConnectionString')]",
-              "type": "SQLServer"
-            }
+            "value": "[parameters('BioInfoDatabaseConnectionString')]"
           }
         }
       ]
@@ -180,15 +177,12 @@
         {
           "apiVersion": "[variables('WebAppApiVersion')]",
           "type": "config",
-          "name": "connectionstrings",
+          "name": "appsettings",
           "dependsOn": [
             "[variables('BioInfoAdminApplicationName')]"
           ],
           "properties": {
-            "DefaultConnection": {
-              "value": "[parameters('BioInfoDatabaseConnectionString')]",
-              "type": "SQLServer"
-            }
+            "value": "[parameters('BioInfoDatabaseConnectionString')]"
           }
         }
       ]
@@ -229,15 +223,12 @@
         {
           "apiVersion": "[variables('WebAppApiVersion')]",
           "type": "config",
-          "name": "connectionstrings",
+          "name": "appsettings",
           "dependsOn": [
             "[variables('BioInfoExternalApplicationName')]"
           ],
           "properties": {
-            "DefaultConnection": {
-              "value": "[parameters('BioInfoDatabaseConnectionString')]",
-              "type": "SQLServer"
-            }
+            "value": "[parameters('BioInfoDatabaseConnectionString')]"
           }
         }
       ]
