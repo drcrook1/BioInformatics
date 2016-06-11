@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BioInfo.Web.ApplicationApi"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BioInfo.Web.ExternalWeb", "Web\ExternalWeb\BioInfo.Web.ExternalWeb.csproj", "{2C566503-673E-4ADF-8503-F6E04C58FB8E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C1FC7DFA-56CF-44BD-9484-C6D231FEE96B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BioInfo.Tests.DeviceSimulator", "Tests\DeviceSimulator\BioInfo.Tests.DeviceSimulator.csproj", "{57E51D40-C611-4895-B740-536FF9452950}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +41,10 @@ Global
 		{2C566503-673E-4ADF-8503-F6E04C58FB8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C566503-673E-4ADF-8503-F6E04C58FB8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C566503-673E-4ADF-8503-F6E04C58FB8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57E51D40-C611-4895-B740-536FF9452950}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57E51D40-C611-4895-B740-536FF9452950}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57E51D40-C611-4895-B740-536FF9452950}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57E51D40-C611-4895-B740-536FF9452950}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,5 +54,6 @@ Global
 		{5A074F04-00DF-4976-A629-7EB98811A8E8} = {35FE01E4-5A2D-43CF-BD16-A91AF1C700D4}
 		{8E0AF359-C2D9-4592-AD14-6D45CE040DEC} = {35FE01E4-5A2D-43CF-BD16-A91AF1C700D4}
 		{2C566503-673E-4ADF-8503-F6E04C58FB8E} = {35FE01E4-5A2D-43CF-BD16-A91AF1C700D4}
+		{57E51D40-C611-4895-B740-536FF9452950} = {C1FC7DFA-56CF-44BD-9484-C6D231FEE96B}
 	EndGlobalSection
 EndGlobal
