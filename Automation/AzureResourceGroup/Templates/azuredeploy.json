@@ -14,15 +14,19 @@
       "type": "string",
       "defaultValue": "https://raw.githubusercontent.com/drcrook1/BioInformatics/master/Automation/AzureResourceGroup/Templates"
     },
+    "DataLakeStoreName": {
+      "type": "string",
+      "minLength": 3
+    },
+    "IoTHubName": {
+      "type": "string",
+      "minLength": 3
+    },
     "IoTHubMessageRetentionInDaysPeriod": {
       "type": "int",
       "defaultValue": 7,
       "minValue": 1,
       "maxValue": 7
-    },
-    "IoTHubName": {
-      "type": "string",
-      "minLength": 3
     },
     "IoTHubPartitionCount": {
       "type": "int",
@@ -187,6 +191,23 @@
     "WebAppsTemplateUrl": "[concat(parameters('TemplateBaseUri'), '/webapps/deployment.json')]"
   },
   "resources": [
+    {
+      "apiVersion": "[variables('ResourceDeploymentApiVersion')]",
+      "name": "DataLake",
+      "type": "Microsoft.Resources/deployments",
+      "properties": {
+        "mode": "[parameters('DeploymentMode')]",
+        "templateLink": {
+          "uri": "[variables('DataLakeTemplateUrl')]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "DataLakeStoreName": {
+            "value": "[parameters('DataLakeStoreName')]"
+          }
+        }
+      }
+    },
     {
       "apiVersion": "[variables('ResourceDeploymentApiVersion')]",
       "name": "IoTHub",

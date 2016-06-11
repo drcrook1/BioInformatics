@@ -15,9 +15,6 @@
       "apiVersion": "[variables('DataLakeApiVersion')]",
       "location": "[resourceGroup().location]",
       "name": "[parameters('DataLakeStoreName')]",
-      "tags": {
-        "displayName": "BioInfoDataLake"
-      },
       "type": "Microsoft.DataLakeStore/accounts"
     }
   ],
