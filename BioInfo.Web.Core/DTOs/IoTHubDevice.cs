@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BioInfo.Web.Core.Interfaces
+namespace BioInfo.Web.Core.DTOs
 {
-    public interface IDevice
+    class IoTHubDevice
     {
-        string GetName();
     }
 }

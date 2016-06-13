@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BioInfo.Web.Core.Interfaces
 {
-    public interface ITelemetry
+    public interface IMessage
     {
         string Serialize();
-        ITelemetry DeSerialize(string telemetry);
+        IMessage DeSerialize(string message);
     }
 }

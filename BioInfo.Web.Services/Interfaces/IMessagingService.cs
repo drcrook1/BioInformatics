@@ -9,8 +9,8 @@ namespace BioInfo.Web.Services
 {
     public interface IMessagingService
     {
-        bool AssignSecurityTokenToDevice();
-        bool RevokeSecurityTokenFromDevice();
-        bool SendDeviceNotification(IDevice device, IMessage message);
+        Task<FunctionResult<bool>> RegisterDeviceAsync(IDevice device);
+        Task<FunctionResult<bool>> UnregisterDeviceAsync();
+        Task<FunctionResult<bool>> SendDeviceMessageAsync(IDevice device, string message);
     }
 }

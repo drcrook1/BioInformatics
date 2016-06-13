@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace BioInfo.Web.Core.Interfaces
 {
-    public interface IDevice
+    public interface IAppLogMessage
     {
-        string GetName();
+        IAppLogMessage CreateNew(Exception e);
     }
 }
