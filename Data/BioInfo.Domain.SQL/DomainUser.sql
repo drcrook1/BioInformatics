@@ -9,6 +9,6 @@
     [Weight] FLOAT NOT NULL, 
     [Race] NCHAR(10) NOT NULL, 
     [Current Medications] NVARCHAR(255) NULL , 
-    [Medical History] NVARCHAR(8000) NULL, 
+    [Medical History] NVARCHAR(4000) NULL, 
     [HasGlasses] BIT NOT NULL DEFAULT 0
 )
