@@ -18,6 +18,7 @@ namespace BioInfo.Web.Services.Implementations
 
         public IoTHubService(string iotHubConnString, ILoggingService loggingService)
         {
+            this.loggingService = loggingService;
             regManager = RegistryManager.CreateFromConnectionString(iotHubConnString);
             serviceClient = ServiceClient.CreateFromConnectionString(iotHubConnString);
         }
