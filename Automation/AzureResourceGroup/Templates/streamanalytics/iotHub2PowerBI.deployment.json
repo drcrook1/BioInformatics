@@ -1,0 +1,94 @@
+﻿{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "IoTHub2PowerBIJobName": {
+      "type": "string",
+      "minLength": 3
+    },
+    "StreamAnalyticsSkuName": {
+      "type": "string",
+      "allowedValues": [
+        "standard"
+      ],
+      "defaultValue": "standard"
+    },
+    "IoTHub2PowerBIConsumerGroupName": {
+      "type": "string",
+      "metadata": {
+        "description": "Consumer group name for IoT Hub to PowerBI data transfer."
+      },
+      "defaultValue": "cg2"
+    },
+    "IoTHubName": {
+      "type": "string",
+      "minLength": 3
+    },
+    "StreamAnalyticsStartBehavior": {
+      "type": "string",
+      "metadata": {
+        "description": "The start behavior for Stream Analytics jobs [LastStopTime | JobStartTime (default)]"
+      },
+      "defaultValue": "JobStartTime"
+    },
+    "IoTHub2PowerBITransformationQuery": {
+      "type": "string",
+      "minLength": 3,
+      "defaultValue": "SELECT * FROM DeviceDataStreamFromIoTHub"
+    }
+  },
+  "variables": {
+    "StreamAnalyticsApiVersion": "2015-10-01",
+    "IoTHubApiVersion": "2016-02-03",
+    "IoTHubKeyName": "iothubowner",
+    "IoTHubKeyResource": "[resourceId('Microsoft.Devices/Iothubs/Iothubkeys', parameters('IotHubName'), variables('iotHubKeyName'))]"
+  },
+  "resources": [
+    {
+      "apiVersion": "[variables('StreamAnalyticsApiVersion')]",
+      "type": "Microsoft.StreamAnalytics/StreamingJobs",
+      "name": "[parameters('IoTHub2PowerBIJobName')]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "sku": { "name": "[parameters('StreamAnalyticsSkuName')]" },
+        "OutputStartMode": "[parameters('StreamAnalyticsStartBehavior')]",
+        "EventsOutOfOrderMaxDelayInSeconds": 10,
+        "EventsOutOfOrderPolicy": "adjust",
+        "EventsLateArrivalMaxDelayInSeconds": 10,
+        "inputs": [
+          {
+            "Name": "DeviceDataStreamFromIoTHub",
+            "Properties": {
+              "DataSource": {
+                "Properties": {
+                  "consumerGroupName": "[parameters('IoTHub2PowerBIConsumerGroupName')]",
+                  "iotHubNamespace": "[parameters('IoTHubName')]",
+                  "sharedAccessPolicyKey": "[listkeys(variables('IoTHubKeyResource'), variables('IoTHubApiVersion')).primaryKey]",
+                  "sharedAccessPolicyName": "[variables('IoTHubKeyName')]"
+                },
+                "Type": "Microsoft.Devices/IotHubs"
+              },
+              "Serialization": {
+                "Properties": {
+                  "Encoding": "UTF8"
+                },
+                "Type": "Json"
+              },
+              "Type": "Stream"
+            }
+          }
+        ],
+        "transformation": {
+          "name": "IoTHub2PowerBIQuery",
+          "properties": {
+            "streamingUnits": 1,
+            "query": "[parameters('IoTHub2PowerBITransformationQuery')]"
+          }
+        },
+        "outputs": [
+        ]
+      }
+    }
+  ],
+  "outputs": { }
+}

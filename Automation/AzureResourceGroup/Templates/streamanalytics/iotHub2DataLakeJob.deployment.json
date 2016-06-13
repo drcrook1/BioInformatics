@@ -1,0 +1,121 @@
+﻿{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "StreamAnalyticsSkuName": {
+      "type": "string",
+      "allowedValues": [
+        "standard"
+      ],
+      "defaultValue": "standard"
+    },
+    "IoTHub2DataLakeJobName": {
+      "type": "string",
+      "minLength": 3
+    },
+    "StreamAnalyticsStartBehavior": {
+      "type": "string",
+      "metadata": {
+        "description": "The start behavior for Stream Analytics jobs [LastStopTime | JobStartTime (default)]"
+      },
+      "defaultValue": "JobStartTime"
+    },
+    "StreamAnalyticsStartTime": {
+      "type": "string",
+      "metadata": {
+        "description": "The start time for Stream Analytics job"
+      },
+      "defaultValue": "notused"
+    },
+    "IoTHub2DataLakeConsumerGroupName": {
+      "type": "string",
+      "metadata": {
+        "description": "Consumer group name for IoT Hub to Data Lake data transfer."
+      },
+      "defaultValue": "cg1"
+    },
+    "IoTHubName": {
+      "type": "string",
+      "minLength": 3
+    },
+    "IoTHub2DataLakeTransformationQuery": {
+      "type": "string",
+      "minLength": 3,
+      "defaultValue": "SELECT * FROM DeviceDataStreamFromIoTHub"
+    }
+  },
+  "variables": {
+    "StreamAnalyticsApiVersion": "2015-10-01",
+    "IoTHubApiVersion": "2016-02-03",
+    "IoTHubKeyName": "iothubowner",
+    "IoTHubKeyResource": "[resourceId('Microsoft.Devices/Iothubs/Iothubkeys', parameters('IotHubName'), variables('iotHubKeyName'))]"
+  },
+  "resources": [
+    {
+      "apiVersion": "[variables('StreamAnalyticsApiVersion')]",
+      "type": "Microsoft.StreamAnalytics/streamingjobs",
+      "name": "[parameters('IoTHub2DataLakeJobName')]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "sku": {
+          "name": "[parameters('StreamAnalyticsSkuName')]"
+        },
+        "OutputStartMode": "[parameters('StreamAnalyticsStartBehavior')]",
+        "EventsOutOfOrderMaxDelayInSeconds": 10,
+        "EventsOutOfOrderPolicy": "adjust",
+        "EventsLateArrivalMaxDelayInSeconds": 10,
+        "Inputs": [
+          {
+            "Name": "DeviceDataStreamFromIoTHub",
+            "Properties": {
+              "DataSource": {
+                "Properties": {
+                  "consumerGroupName": "[parameters('IoTHub2DataLakeConsumerGroupName')]",
+                  "iotHubNamespace": "[parameters('IotHubName')]",
+                  "sharedAccessPolicyKey": "[listkeys(variables('IoTHubKeyResource'), variables('IoTHubApiVersion')).primaryKey]",
+                  "sharedAccessPolicyName": "[variables('IoTHubKeyName')]"
+                },
+                "Type": "Microsoft.Devices/IotHubs"
+              },
+              "Serialization": {
+                "Properties": {
+                  "Encoding": "UTF8"
+                },
+                "Type": "Json"
+              },
+              "Type": "Stream"
+            }
+          }
+        ],
+        "Outputs": [
+          {
+            "Name": "DeviceDataToDataLake",
+            "Properties": {
+              "DataSource": {
+                "Properties": {
+                 //Properties to connect to data lake here.
+                },
+                "Type": "Microsoft.DataLakeStore"
+              },
+              "Serialization": {
+                "Properties": {
+                  "Encoding": "UTF8",
+                  "Format": "Array"
+                },
+                "Type": "Json"
+              }
+            }
+          }
+        ],
+        "Transformation": {
+          "Name": "IoTHub2DataLakeQuery",
+          "Properties": {
+            "Query": "[parameters('IoTHub2DataLakeTransformationQuery')]",
+            "StreamingUnits": 1
+          }
+        }
+      }
+    }
+  ],
+  "outputs": { }
+}

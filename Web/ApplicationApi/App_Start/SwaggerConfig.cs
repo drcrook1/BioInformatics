@@ -1,11 +1,7 @@
-﻿using System.Globalization;
-using System.Linq;
 using System.Web.Http;
-using System.Web.Http.Description;
-using Swashbuckle.Application;
-using Swashbuckle.Swagger;
 using WebActivatorEx;
 using BioInfo.Web.ApplicationApi;
+using Swashbuckle.Application;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
@@ -17,7 +13,7 @@ namespace BioInfo.Web.ApplicationApi
         {
             var thisAssembly = typeof(SwaggerConfig).Assembly;
 
-            GlobalConfiguration.Configuration
+            GlobalConfiguration.Configuration 
                 .EnableSwagger(c =>
                     {
                         // By default, the service root url is inferred from the request used to access the docs.
@@ -144,11 +140,6 @@ namespace BioInfo.Web.ApplicationApi
                         // to execute the operation
                         //
                         //c.OperationFilter<AssignOAuth2SecurityRequirements>();
-                        //
-                        // Set filter to eliminate duplicate operation ids from being generated
-                        // when there are multiple operations with the same verb in the API.
-                        //
-                        c.OperationFilter<IncludeParameterNamesInOperationIdFilter>();
 
                         // Post-modify the entire Swagger document by wiring up one or more Document filters.
                         // This gives full control to modify the final SwaggerDocument. You should have a good understanding of
@@ -170,12 +161,9 @@ namespace BioInfo.Web.ApplicationApi
                         // custom strategy to pick a winner or merge the descriptions for the purposes of the Swagger docs 
                         //
                         //c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
-                        // ***** Uncomment the following to enable the swagger UI *****
-                        /*
-                            })
-                        .EnableSwaggerUi(c =>
-                            {
-                        */
+                    })
+                .EnableSwaggerUi(c =>
+                    {
                         // Use the "InjectStylesheet" option to enrich the UI with one or more additional CSS stylesheets.
                         // The file must be included in your project as an "Embedded Resource", and then the resource's
                         // "Logical Name" is passed to the method as shown below.
@@ -220,25 +208,6 @@ namespace BioInfo.Web.ApplicationApi
                         //
                         //c.EnableOAuth2Support("test-client-id", "test-realm", "Swagger UI");
                     });
-        }
-    }
-
-    internal class IncludeParameterNamesInOperationIdFilter : IOperationFilter
-    {
-        public void Apply(Operation operation, SchemaRegistry schemaRegistry, ApiDescription apiDescription)
-        {
-            if (operation.parameters != null)
-            {
-                // Select the capitalized parameter names
-                var parameters = operation.parameters.Select(
-                    p => CultureInfo.InvariantCulture.TextInfo.ToTitleCase(p.name));
-
-                // Set the operation id to match the format "OperationByParam1AndParam2"
-                operation.operationId = string.Format(
-                    "{0}By{1}",
-                    operation.operationId,
-                    string.Join("And", parameters));
-            }
         }
     }
 }

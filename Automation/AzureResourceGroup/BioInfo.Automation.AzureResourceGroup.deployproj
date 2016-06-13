@@ -39,8 +39,12 @@
     <None Include="Templates\sqldatabase\parameters.dev.json" />
     <None Include="Templates\servicebusqueue\deployment.json" />
     <None Include="Templates\servicebusqueue\parameters.dev.json" />
-    <None Include="Templates\streamanalytics\deployment.json" />
-    <None Include="Templates\streamanalytics\parameters.dev.json" />
+    <None Include="Templates\streamanalytics\iotHub2PowerBI.deployment.json" />
+    <None Include="Templates\streamanalytics\iotHub2PowerBI.parameters.dev.json" />
+    <None Include="Templates\streamanalytics\iotHub2SBQueueJob.deployment.json" />
+    <None Include="Templates\streamanalytics\iotHub2SBQueueJob.parameters.dev.json" />
+    <None Include="Templates\streamanalytics\iotHub2DataLakeJob.deployment.json" />
+    <None Include="Templates\streamanalytics\iotHub2DataLakeJob.parameters.dev.json" />
     <None Include="Templates\datalake\deployment.json" />
     <None Include="Templates\datalake\parameters.dev..json" />
     <None Include="Templates\iothub\deployment.json" />

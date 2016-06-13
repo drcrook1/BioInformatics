@@ -71,6 +71,29 @@
       ],
       "defaultValue": "0"
     },
+    "BioInfoAbnormalEventJobFarmName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "BioInfoAbnormalEventJobFarmSKU": {
+      "type": "string",
+      "allowedValues": [
+        "Free",
+        "Shared",
+        "Basic",
+        "Standard"
+      ],
+      "defaultValue": "Free"
+    },
+    "BioInfoAbnormalEventJobFarmWorkerSize": {
+      "type": "string",
+      "allowedValues": [
+        "0",
+        "1",
+        "2"
+      ],
+      "defaultValue": "0"
+    },
     "NumberOfAdminApplicationFarmWorkers": {
       "type": "int",
       "defaultValue": 1
@@ -79,7 +102,11 @@
       "type": "int",
       "defaultValue": 1
     },
-    "NumberOfExternalApplicationFarmWrokers": {
+    "NumberOfExternalApplicationFarmWorkers": {
+      "type": "int",
+      "defaultValue": 1
+    },
+    "NumberOfAbnormalEventJobFarmWorkers": {
       "type": "int",
       "defaultValue": 1
     },
@@ -92,7 +119,8 @@
     "AppServicePlanApiVersion": "2014-06-01",
     "BioInfoAPIApplicationName": "[concat('BioInfoAPIApplication', uniqueString(resourceGroup().id))]",
     "BioInfoAdminApplicationName": "[concat('BioInfoAdminApplication', uniqueString(resourceGroup().id))]",
-    "BioInfoExternalApplicationName": "[concat('BioInfoExternalApplication', uniqueString(resourceGroup().id))]"
+    "BioInfoExternalApplicationName": "[concat('BioInfoExternalApplication', uniqueString(resourceGroup().id))]",
+    "BioInfoAbnormalEventJobName": "[concat('BioInfoAbnormalEventJob', uniqueString(resourceGroup().id))]"
   },
   "resources": [
     {
@@ -202,7 +230,7 @@
         "name": "[parameters('BioInfoExternalApplicationFarmName')]",
         "sku": "[parameters('BioInfoExternalApplicationFarmSKU')]",
         "workerSize": "[parameters('BioInfoExternalApplicationFarmWorkerSize')]",
-        "numberOfWorkers": "[parameters('NumberOfExternalApplicationFarmWrokers')]"
+        "numberOfWorkers": "[parameters('NumberOfExternalApplicationFarmWorkers')]"
       },
       "tags": {
         "displayName": "BioInfoExternalApplicationFarm"
@@ -232,6 +260,55 @@
           "name": "connectionstrings",
           "dependsOn": [
             "[variables('BioInfoExternalApplicationName')]"
+          ],
+          "properties": {
+            "DefaultConnection": {
+              "value": "[parameters('BioInfoDatabaseConnectionString')]",
+              "type": "SQLServer"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "apiVersion": "[variables('AppServicePlanApiVersion')]",
+      "dependsOn": [ ],
+      "location": "[resourceGroup().location]",
+      "name": "[parameters('BioInfoAbnormalEventJobFarmName')]",
+      "properties": {
+        "name": "[parameters('BioInfoAbnormalEventJobFarmName')]",
+        "sku": "[parameters('BioInfoAbnormalEventJobFarmSKU')]",
+        "workerSize": "[parameters('BioInfoAbnormalEventJobFarmWorkerSize')]",
+        "numberOfWorkers": "[parameters('NumberOfAbnormalEventJobFarmWorkers')]"
+      },
+      "tags": {
+        "displayName": "BioInfoAbnormalEventJobFarm"
+      },
+      "type": "Microsoft.Web/serverfarms"
+    },
+    {
+      "apiVersion": "[variables('WebAppApiVersion')]",
+      "dependsOn": [
+        "[concat('Microsoft.Web/serverfarms/', parameters('BioInfoAbnormalEventJobFarmName'))]"
+      ],
+      "location": "[resourceGroup().location]",
+      "name": "[variables('BioInfoAbnormalEventJobName')]",
+      "properties": {
+        "name": "[variables('BioInfoAbnormalEventJobName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms/', parameters('BioInfoAbnormalEventJobFarmName'))]"
+      },
+      "tags": {
+        "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('BioInfoAPIApplicationFarmName'))]": "Resource",
+        "displayName": "BioInfoAbnormalEventJob"
+      },
+      "type": "Microsoft.Web/sites",
+      "resources": [
+        {
+          "apiVersion": "[variables('WebAppApiVersion')]",
+          "type": "config",
+          "name": "connectionstrings",
+          "dependsOn": [
+            "[variables('BioInfoAbnormalEventJobName')]"
           ],
           "properties": {
             "DefaultConnection": {
