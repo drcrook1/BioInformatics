@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "BioInfo.Automation.AzureResourceGroup", "Automation\AzureResourceGroup\BioInfo.Automation.AzureResourceGroup.deployproj", "{0C08CB76-8D3A-466F-B593-4538A55F481E}"
 EndProject
@@ -20,6 +20,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BioInfo.Web.AbnormalEventJob", "Web\AbnormalEventJob\BioInfo.Web.AbnormalEventJob.csproj", "{71D51A21-09DA-4947-8D0B-5F56FE85FF84}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BioInfo.Web.AdminWeb", "Web\AdminWeb\BioInfo.Web.AdminWeb.csproj", "{3AEA5C4D-5206-4EFF-AAE0-598908B427E4}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "BioInfo.Domain.SQL", "Data\BioInfo.Domain.SQL\BioInfo.Domain.SQL.sqlproj", "{03689493-CED0-4B98-9162-5BFFCD6FB640}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{3E9A5F4F-8D3B-4CF1-BB93-DE305B450064}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +55,12 @@ Global
 		{3AEA5C4D-5206-4EFF-AAE0-598908B427E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AEA5C4D-5206-4EFF-AAE0-598908B427E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AEA5C4D-5206-4EFF-AAE0-598908B427E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03689493-CED0-4B98-9162-5BFFCD6FB640}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03689493-CED0-4B98-9162-5BFFCD6FB640}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03689493-CED0-4B98-9162-5BFFCD6FB640}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{03689493-CED0-4B98-9162-5BFFCD6FB640}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03689493-CED0-4B98-9162-5BFFCD6FB640}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03689493-CED0-4B98-9162-5BFFCD6FB640}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,5 +72,6 @@ Global
 		{57E51D40-C611-4895-B740-536FF9452950} = {C1FC7DFA-56CF-44BD-9484-C6D231FEE96B}
 		{71D51A21-09DA-4947-8D0B-5F56FE85FF84} = {35FE01E4-5A2D-43CF-BD16-A91AF1C700D4}
 		{3AEA5C4D-5206-4EFF-AAE0-598908B427E4} = {35FE01E4-5A2D-43CF-BD16-A91AF1C700D4}
+		{03689493-CED0-4B98-9162-5BFFCD6FB640} = {3E9A5F4F-8D3B-4CF1-BB93-DE305B450064}
 	EndGlobalSection
 EndGlobal

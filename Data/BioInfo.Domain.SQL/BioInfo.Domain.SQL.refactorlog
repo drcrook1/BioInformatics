@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="0643f616-22ec-4be3-a31d-f1b872db104a" ChangeDateTime="06/13/2016 17:08:54">
+    <Property Name="ElementName" Value="[dbo].[BandTelemtry].[Barometer]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BandTelemtry]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CollectionTime" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d3203014-9b95-48b4-9123-50ec99a301c3" ChangeDateTime="06/13/2016 17:09:52">
+    <Property Name="ElementName" Value="[dbo].[BandTelemtry].[GalvonicSkinResponse]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BandTelemtry]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="GalvSkinResponse" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="958902e3-080c-49de-a58b-edfeb4a1f762" ChangeDateTime="06/13/2016 17:09:58">
+    <Property Name="ElementName" Value="[dbo].[BandTelemtry].[GalvSkinResponse]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BandTelemtry]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="GalvSkinRes" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="467b10bc-def3-4df9-b167-ba8b3390fe16" ChangeDateTime="06/13/2016 17:13:46">
+    <Property Name="ElementName" Value="[dbo].[Band].[Doma]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Band]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DomainOwnerId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4f6f3681-9b64-4c92-aa35-c84e10b894ff" ChangeDateTime="06/13/2016 17:14:49">
+    <Property Name="ElementName" Value="[dbo].[Band].[DomainOwnerId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Band]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DomainUserId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="93ff157f-c71d-4790-a22f-fa43395badd3" ChangeDateTime="06/13/2016 17:32:56">
+    <Property Name="ElementName" Value="[dbo].[DomainUser].[Height]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[DomainUser]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="HeightInches" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4833e622-353a-4043-96d5-1dd648f218e2" ChangeDateTime="06/13/2016 17:37:16">
+    <Property Name="ElementName" Value="[dbo].[DomainUser].[Medical Histor]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[DomainUser]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Medical History" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="82631d1e-a1e3-4c5d-895a-0a166881cda7" ChangeDateTime="06/13/2016 17:39:35">
+    <Property Name="ElementName" Value="[dbo].[DomainUser].[Age]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[DomainUser]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="BirthDate" />
+  </Operation>
+</Operations>
