@@ -42,6 +42,7 @@ namespace BioInfo.Web.Services.Implementations
             return new FunctionResult<bool>(true);
 
         }
+
         /// <summary>
         /// Registers new device with Azure IoT Hub.
         /// 
@@ -50,7 +51,7 @@ namespace BioInfo.Web.Services.Implementations
         /// </summary>
         /// <param name="device"></param>
         /// <returns></returns>
-        private async Task<FunctionResult<bool>> RegisterDeviceAsync(IDevice device)
+        public async Task<FunctionResult<bool>> RegisterDeviceAsync(IDevice device)
         {
             Device azureDevice;
             try
@@ -69,6 +70,5 @@ namespace BioInfo.Web.Services.Implementations
             }
             return new FunctionResult<bool>(true);
         }
-    
     }
 }
