@@ -56,4 +56,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="BirthDate" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="52dbefc2-dce5-4d47-a54a-024b16af0e3d" ChangeDateTime="06/14/2016 12:50:26">
+    <Property Name="ElementName" Value="[dbo].[BandExperiment].[BandTelemetryId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BandExperiment]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TelemetryId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7dd171cf-e22b-4ecd-84dc-bbd7ffbf219b" ChangeDateTime="06/14/2016 12:51:15">
+    <Property Name="ElementName" Value="[dbo].[BandExperiment].[TelemetryId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BandExperiment]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="BandTelemetryId" />
+  </Operation>
 </Operations>
