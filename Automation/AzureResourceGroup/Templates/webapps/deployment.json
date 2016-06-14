@@ -119,7 +119,7 @@
   },
   "variables": {
     "WebAppApiVersion": "2015-08-01",
-    "AppServicePlanApiVersion": "2014-06-01",
+    "AppServicePlanApiVersion": "2015-04-01",
     "BioInfoAPIApplicationName": "[concat('BioInfoAPIApplication', uniqueString(resourceGroup().id))]",
     "BioInfoAdminApplicationName": "[concat('BioInfoAdminApplication', uniqueString(resourceGroup().id))]",
     "BioInfoExternalApplicationName": "[concat('BioInfoExternalApplication', uniqueString(resourceGroup().id))]",
