@@ -189,7 +189,7 @@
       "type": "int",
       "defaultValue": 1
     },
-    "NumberOfExternalApplicationFarmWrokers": {
+    "NumberOfExternalApplicationFarmWorkers": {
       "type": "int",
       "defaultValue": 1
     },
@@ -366,8 +366,8 @@
           "NumberOfAPIApplicationFarmWorkers": {
             "value": "[parameters('NumberOfAPIApplicationFarmWorkers')]"
           },
-          "NumberOfExternalApplicationFarmWrokers": {
-            "value": "[parameters('NumberOfExternalApplicationFarmWrokers')]"
+          "NumberOfExternalApplicationFarmWorkers": {
+            "value": "[parameters('NumberOfExternalApplicationFarmWorkers')]"
           },
           "BioInfoDatabaseConnectionString": {
             "value": "[reference('AzureSqlDatabase').outputs.DatabaseConnectionString.value]"
