@@ -20,7 +20,7 @@
     },
     "DataLakeLocation": {
       "type": "string",
-      "defaultValue": "East US"
+      "defaultValue": "East US 2"
     },
     "IoTHubName": {
       "type": "string",
@@ -28,7 +28,7 @@
     },
     "IoTHubMessageRetentionInDaysPeriod": {
       "type": "int",
-      "defaultValue": 7,
+      "defaultValue": 1,
       "minValue": 1,
       "maxValue": 7
     },
@@ -47,7 +47,7 @@
     },
     "IoTHubLocation": {
       "type": "string",
-      "defaultValue": "East US 2"
+      "defaultValue": "East US"
     },
     "CapacityOfIoTHub": {
       "type": "int",
@@ -185,6 +185,29 @@
       ],
       "defaultValue": "0"
     },
+    "BioInfoAbnormalEventJobFarmName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "BioInfoAbnormalEventJobFarmSKU": {
+      "type": "string",
+      "allowedValues": [
+        "Free",
+        "Shared",
+        "Basic",
+        "Standard"
+      ],
+      "defaultValue": "Free"
+    },
+    "BioInfoAbnormalEventJobFarmWorkerSize": {
+      "type": "string",
+      "allowedValues": [
+        "0",
+        "1",
+        "2"
+      ],
+      "defaultValue": "0"
+    },
     "NumberOfAdminApplicationFarmWorkers": {
       "type": "int",
       "defaultValue": 1
@@ -194,6 +217,10 @@
       "defaultValue": 1
     },
     "NumberOfExternalApplicationFarmWorkers": {
+      "type": "int",
+      "defaultValue": 1
+    },
+    "NumberOfAbnormalEventJobFarmWorkers": {
       "type": "int",
       "defaultValue": 1
     },
@@ -365,6 +392,15 @@
           "BioInfoExternalApplicationFarmWorkerSize": {
             "value": "[parameters('BioInfoExternalApplicationFarmWorkerSize')]"
           },
+          "BioInfoAbnormalEventJobFarmName": {
+            "value": "[parameters('BioInfoAbnormalEventJobFarmName')]"
+          },
+          "BioInfoAbnormalEventJobFarmSKU": {
+            "value": "[parameters('BioInfoAbnormalEventJobFarmSKU')]"
+          },
+          "BioInfoAbnormalEventJobFarmWorkerSize": {
+            "value": "[parameters('BioInfoAbnormalEventJobFarmWorkerSize')]"
+          },
           "NumberOfAdminApplicationFarmWorkers": {
             "value": "[parameters('NumberOfAdminApplicationFarmWorkers')]"
           },
@@ -373,6 +409,9 @@
           },
           "NumberOfExternalApplicationFarmWorkers": {
             "value": "[parameters('NumberOfExternalApplicationFarmWorkers')]"
+          },
+          "NumberOfAbnormalEventJobFarmWorkers": {
+            "value": "[parameters('NumberOfAbnormalEventJobFarmWorkers')]"
           },
           "BioInfoDatabaseConnectionString": {
             "value": "[reference('AzureSqlDatabase').outputs.DatabaseConnectionString.value]"
