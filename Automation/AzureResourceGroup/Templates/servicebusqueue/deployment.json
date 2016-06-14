@@ -15,6 +15,9 @@
         "Standard"
       ],
       "defaultValue": "Standard"
+    },
+    "ServiceBusLocation": {
+      "type": "string"
     }
   },
   "variables": {
@@ -27,7 +30,7 @@
       "apiVersion": "[variables('ServiceBusQueueApiVersion')]",
       "name": "[parameters('ServiceBusNamespaceName')]",
       "type": "Microsoft.ServiceBus/namespaces",
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('ServiceBusLocation')]",
       "kind": "Messaging",
       "sku": {
         "name": "[parameters('ServiceBusSKU')]",

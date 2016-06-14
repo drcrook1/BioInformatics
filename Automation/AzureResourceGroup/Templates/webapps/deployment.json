@@ -112,6 +112,9 @@
     },
     "BioInfoDatabaseConnectionString": {
       "type": "string"
+    },
+    "WebAppLocation": {
+      "type": "string"
     }
   },
   "variables": {
@@ -126,7 +129,7 @@
     {
       "apiVersion": "[variables('AppServicePlanApiVersion')]",
       "dependsOn": [ ],
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('WebAppLocation')]",
       "name": "[parameters('BioInfoAPIApplicationFarmName')]",
       "properties": {
         "name": "[parameters('BioInfoAPIApplicationFarmName')]",
@@ -144,7 +147,7 @@
       "dependsOn": [
         "[concat('Microsoft.Web/serverfarms/', parameters('BioInfoAPIApplicationFarmName'))]"
       ],
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('WebAppLocation')]",
       "name": "[variables('BioInfoAPIApplicationName')]",
       "properties": {
         "name": "[variables('BioInfoAPIApplicationName')]",
@@ -175,7 +178,7 @@
     {
       "apiVersion": "[variables('AppServicePlanApiVersion')]",
       "dependsOn": [ ],
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('WebAppLocation')]",
       "name": "[parameters('BioInfoAdminApplicationFarmName')]",
       "properties": {
         "name": "[parameters('BioInfoAdminApplicationFarmName')]",
@@ -193,7 +196,7 @@
       "dependsOn": [
         "[concat('Microsoft.Web/serverfarms/', parameters('BioInfoAdminApplicationFarmName'))]"
       ],
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('WebAppLocation')]",
       "name": "[variables('BioInfoAdminApplicationName')]",
       "properties": {
         "name": "[variables('BioInfoAdminApplicationName')]",
@@ -224,7 +227,7 @@
     {
       "apiVersion": "[variables('AppServicePlanApiVersion')]",
       "dependsOn": [ ],
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('WebAppLocation')]",
       "name": "[parameters('BioInfoExternalApplicationFarmName')]",
       "properties": {
         "name": "[parameters('BioInfoExternalApplicationFarmName')]",
@@ -242,7 +245,7 @@
       "dependsOn": [
         "[concat('Microsoft.Web/serverfarms/', parameters('BioInfoExternalApplicationFarmName'))]"
       ],
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('WebAppLocation')]",
       "name": "[variables('BioInfoExternalApplicationName')]",
       "properties": {
         "name": "[variables('BioInfoExternalApplicationName')]",
@@ -273,7 +276,7 @@
     {
       "apiVersion": "[variables('AppServicePlanApiVersion')]",
       "dependsOn": [ ],
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('WebAppLocation')]",
       "name": "[parameters('BioInfoAbnormalEventJobFarmName')]",
       "properties": {
         "name": "[parameters('BioInfoAbnormalEventJobFarmName')]",
@@ -291,7 +294,7 @@
       "dependsOn": [
         "[concat('Microsoft.Web/serverfarms/', parameters('BioInfoAbnormalEventJobFarmName'))]"
       ],
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('WebAppLocation')]",
       "name": "[variables('BioInfoAbnormalEventJobName')]",
       "properties": {
         "name": "[variables('BioInfoAbnormalEventJobName')]",

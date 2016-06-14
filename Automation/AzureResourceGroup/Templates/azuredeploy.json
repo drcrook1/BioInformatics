@@ -18,6 +18,9 @@
       "type": "string",
       "minLength": 3
     },
+    "DataLakeLocation": {
+      "type": "string"
+    },
     "IoTHubName": {
       "type": "string",
       "minLength": 3
@@ -41,6 +44,9 @@
       ],
       "defaultValue": "F1"
     },
+    "IoTHubLocation": {
+      "type": "string"
+    },
     "CapacityOfIoTHub": {
       "type": "int",
       "defaultValue": 1
@@ -58,6 +64,9 @@
         "Standard"
       ],
       "defaultValue": "Standard"
+    },
+    "ServiceBusLocation": {
+      "type": "string"
     },
     "BioInfoDatabaseServerAdminLogin": {
       "type": "string",
@@ -99,6 +108,9 @@
       "metadata": {
         "description": "Describes the performance level for Edition"
       }
+    },
+    "BioInfoDatabaseLocation": {
+      "type": "string"
     },
     "BioInfoAdminApplicationFarmName": {
       "type": "string",
@@ -180,6 +192,9 @@
     "NumberOfExternalApplicationFarmWrokers": {
       "type": "int",
       "defaultValue": 1
+    },
+    "WebAppLocation": {
+      "type": "string"
     }
   },
   "variables": {
@@ -204,6 +219,9 @@
         "parameters": {
           "DataLakeStoreName": {
             "value": "[parameters('DataLakeStoreName')]"
+          },
+          "DataLakeLocation": {
+            "value": "[parameters('DataLakeLocation')]"
           }
         }
       }
@@ -233,6 +251,9 @@
           },
           "CapacityOfIoTHub": {
             "value": "[parameters('CapacityOfIoTHub')]"
+          },
+          "IoTHubLocation": {
+            "value": "[parameters('IoTHubLocation')]"
           }
         }
       }
@@ -256,6 +277,9 @@
           },
           "ServiceBusSKU": {
             "value": "[parameters('ServiceBusSKU')]"
+          },
+          "ServiceBusLocation": {
+            "value": "[parameters('ServiceBusLocation')]"
           }
         }
       }
@@ -288,6 +312,9 @@
           },
           "BioInfoDatabaseRequestedServiceObjectiveName": {
             "value": "[parameters('BioInfoDatabaseRequestedServiceObjectiveName')]"
+          },
+          "BioInfoDatabaseLocation": {
+            "value": "[parameters('BioInfoDatabaseLocation')]"
           }
         }
       }
@@ -344,29 +371,9 @@
           },
           "BioInfoDatabaseConnectionString": {
             "value": "[reference('AzureSqlDatabase').outputs.DatabaseConnectionString.value]"
-          }
-        }
-      }
-    },
-    {
-      "apiVersion": "[variables('ResourceDeploymentApiVersion')]",
-      "name": "StreamAnalyticsJob-IoTHub-To-DataLake",
-      "type": "Microsoft.Resources/deployments",
-      "properties": {
-        "mode": "[parameters('DeploymentMode')]",
-        "templateLink": {
-          "uri": "[variables('ServiceBusQueueTemplateUrl')]",
-          "contentVersion": "1.0.0.0"
-        },
-        "parameters": {
-          "ServiceBusNamespaceName": {
-            "value": "[parameters('ServiceBusNamespaceName')]"
           },
-          "ServiceBusQueueName": {
-            "value": "[parameters('ServiceBusQueueName')]"
-          },
-          "ServiceBusSKU": {
-            "value": "[parameters('ServiceBusSKU')]"
+          "WebAppLocation": {
+            "value": "[parameters('WebAppLocation')]"
           }
         }
       }
