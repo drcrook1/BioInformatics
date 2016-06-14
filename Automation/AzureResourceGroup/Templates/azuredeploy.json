@@ -19,7 +19,8 @@
       "minLength": 3
     },
     "DataLakeLocation": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "East US"
     },
     "IoTHubName": {
       "type": "string",
@@ -33,7 +34,7 @@
     },
     "IoTHubPartitionCount": {
       "type": "int",
-      "defaultValue": 1
+      "defaultValue": 2
     },
     "IoTHubSKU": {
       "type": "string",
@@ -45,7 +46,8 @@
       "defaultValue": "F1"
     },
     "IoTHubLocation": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "East US 2"
     },
     "CapacityOfIoTHub": {
       "type": "int",
@@ -66,7 +68,8 @@
       "defaultValue": "Standard"
     },
     "ServiceBusLocation": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "East US"
     },
     "BioInfoDatabaseServerAdminLogin": {
       "type": "string",
@@ -110,7 +113,8 @@
       }
     },
     "BioInfoDatabaseLocation": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "East US"
     },
     "BioInfoAdminApplicationFarmName": {
       "type": "string",
@@ -194,7 +198,8 @@
       "defaultValue": 1
     },
     "WebAppLocation": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "East US"
     }
   },
   "variables": {
