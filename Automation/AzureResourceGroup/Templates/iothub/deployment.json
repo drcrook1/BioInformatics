@@ -28,6 +28,9 @@
     "CapacityOfIoTHub": {
       "type": "int",
       "defaultValue": 1
+    },
+    "IoTHubLocation": {
+     "type": "string"
     }
   },
   "variables": {
@@ -45,7 +48,7 @@
             "partitionCount": "[parameters('IoTHubPartitionCount')]"
           }
         },
-        "location": "[resourceGroup().location]"
+        "location": "[parameters('IoTHubLocation')]"
       },
       "sku": {
         "name": "[parameters('IoTHubSKU')]",

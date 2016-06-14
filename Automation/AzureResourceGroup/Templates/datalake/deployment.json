@@ -5,6 +5,9 @@
     "DataLakeStoreName": {
       "type": "string",
       "minLength": 3
+    },
+    "DataLakeLocation": {
+      "type": "string"
     }
   },
   "variables": {
@@ -13,7 +16,7 @@
   "resources": [
     {
       "apiVersion": "[variables('DataLakeApiVersion')]",
-      "location": "[resourceGroup().location]",
+      "location": "[parameters('DataLakeLocation')]",
       "name": "[parameters('DataLakeStoreName')]",
       "type": "Microsoft.DataLakeStore/accounts"
     }
