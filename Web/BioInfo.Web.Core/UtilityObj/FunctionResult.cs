@@ -10,7 +10,8 @@ namespace BioInfo.Web.Core.Interfaces
     {
         private T result;
         private string err;
-        public FunctionResult(T result, string friendlyError = null)
+        private bool didFail;
+        public FunctionResult(T result, string friendlyError = null, bool didFail = false)
         {
             this.result = result;
             this.err = friendlyError;
@@ -22,6 +23,10 @@ namespace BioInfo.Web.Core.Interfaces
         public string GetFriendlyError()
         {
             return err;
+        }
+        public bool DidFail()
+        {
+            return didFail;
         }
     }
 }

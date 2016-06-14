@@ -25,11 +25,11 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "BioInfo.Domain.SQL", "Data\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{3E9A5F4F-8D3B-4CF1-BB93-DE305B450064}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BioInfo.Web.Services", "BioInfo.Web.Services\BioInfo.Web.Services.csproj", "{D26A4796-5429-4BDC-9DE2-1B21F994B4B9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BioInfo.Web.Services", "Web\BioInfo.Web.Services\BioInfo.Web.Services.csproj", "{D26A4796-5429-4BDC-9DE2-1B21F994B4B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BioInfo.Web.Core", "BioInfo.Web.Core\BioInfo.Web.Core.csproj", "{971D67B3-6D81-4A33-8E28-63CF2C874F32}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BioInfo.Web.Core", "Web\BioInfo.Web.Core\BioInfo.Web.Core.csproj", "{971D67B3-6D81-4A33-8E28-63CF2C874F32}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "BioInfo.Tests.ActivitySimulator", "BioInfo.Tests.ActivitySimulator\BioInfo.Tests.ActivitySimulator.fsproj", "{1172F4E0-7247-4FA3-8C06-21B0D2102EC4}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "BioInfo.Web.Analytics.Services", "Web\BioInfo.Web.Analytics.Services\BioInfo.Web.Analytics.Services.fsproj", "{6CC1A285-0C67-4752-8925-D827E1264730}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,10 +75,10 @@ Global
 		{971D67B3-6D81-4A33-8E28-63CF2C874F32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{971D67B3-6D81-4A33-8E28-63CF2C874F32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{971D67B3-6D81-4A33-8E28-63CF2C874F32}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1172F4E0-7247-4FA3-8C06-21B0D2102EC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1172F4E0-7247-4FA3-8C06-21B0D2102EC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1172F4E0-7247-4FA3-8C06-21B0D2102EC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1172F4E0-7247-4FA3-8C06-21B0D2102EC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CC1A285-0C67-4752-8925-D827E1264730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CC1A285-0C67-4752-8925-D827E1264730}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CC1A285-0C67-4752-8925-D827E1264730}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CC1A285-0C67-4752-8925-D827E1264730}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,6 +93,6 @@ Global
 		{03689493-CED0-4B98-9162-5BFFCD6FB640} = {3E9A5F4F-8D3B-4CF1-BB93-DE305B450064}
 		{D26A4796-5429-4BDC-9DE2-1B21F994B4B9} = {35FE01E4-5A2D-43CF-BD16-A91AF1C700D4}
 		{971D67B3-6D81-4A33-8E28-63CF2C874F32} = {35FE01E4-5A2D-43CF-BD16-A91AF1C700D4}
-		{1172F4E0-7247-4FA3-8C06-21B0D2102EC4} = {C1FC7DFA-56CF-44BD-9484-C6D231FEE96B}
+		{6CC1A285-0C67-4752-8925-D827E1264730} = {35FE01E4-5A2D-43CF-BD16-A91AF1C700D4}
 	EndGlobalSection
 EndGlobal

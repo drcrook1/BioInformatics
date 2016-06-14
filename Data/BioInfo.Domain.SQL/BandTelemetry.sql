@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[BandTelemtry]
+﻿CREATE TABLE [dbo].[BandTelemetry]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [CollectionTime] DATETIME NOT NULL, 

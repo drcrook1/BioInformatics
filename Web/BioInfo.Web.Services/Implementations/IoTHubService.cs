@@ -38,7 +38,7 @@ namespace BioInfo.Web.Services.Implementations
             catch(Exception e)
             {
                 loggingService.LogException(e);
-                return new FunctionResult<bool>(false, e.Message);
+                return new FunctionResult<bool>(false, e.Message, true);
             }
             return new FunctionResult<bool>(true);
 
@@ -67,7 +67,7 @@ namespace BioInfo.Web.Services.Implementations
             catch(Exception e)
             {
                 loggingService.LogException(e);
-                return new FunctionResult<bool>(false, e.Message);
+                return new FunctionResult<bool>(false, e.Message, true);
             }
             return new FunctionResult<bool>(true);
         }
