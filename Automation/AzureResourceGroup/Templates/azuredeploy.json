@@ -347,29 +347,6 @@
           }
         }
       }
-    },
-    {
-      "apiVersion": "[variables('ResourceDeploymentApiVersion')]",
-      "name": "StreamAnalyticsJob-IoTHub-To-DataLake",
-      "type": "Microsoft.Resources/deployments",
-      "properties": {
-        "mode": "[parameters('DeploymentMode')]",
-        "templateLink": {
-          "uri": "[variables('ServiceBusQueueTemplateUrl')]",
-          "contentVersion": "1.0.0.0"
-        },
-        "parameters": {
-          "ServiceBusNamespaceName": {
-            "value": "[parameters('ServiceBusNamespaceName')]"
-          },
-          "ServiceBusQueueName": {
-            "value": "[parameters('ServiceBusQueueName')]"
-          },
-          "ServiceBusSKU": {
-            "value": "[parameters('ServiceBusSKU')]"
-          }
-        }
-      }
     }
   ],
   "outputs": {
