@@ -8,6 +8,6 @@ namespace BioInfo.Web.Core.Interfaces
 {
     public interface IAppLogMessage
     {
-        IAppLogMessage CreateNew(Exception e);
+        FunctionResult<IAppLogMessage> CreateNew(Exception e);
     }
 }

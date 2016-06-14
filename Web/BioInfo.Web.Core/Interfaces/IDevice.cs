@@ -8,6 +8,6 @@ namespace BioInfo.Web.Core.Interfaces
 {
     public interface IDevice
     {
-        string GetName();
+        FunctionResult<string> GetName();
     }
 }

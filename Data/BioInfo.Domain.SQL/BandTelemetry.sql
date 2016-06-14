@@ -2,13 +2,17 @@
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [CollectionTime] DATETIME NOT NULL, 
-    [Barometer] FLOAT NULL, 
+    [Longitude] FLOAT NULL, 
+    [Latitude] FLOAT NULL, 
+    [BarometricPressure] FLOAT NULL, 
+    [Capacitance] FLOAT NULL, 
     [HeartRate] FLOAT NULL, 
+    [AmbientLight] FLOAT NULL, 
+    [SkinTemperature] INT NULL, 
+    [BandId] NCHAR(10) NOT NULL, 
     [UV] FLOAT NULL, 
-    [Microphone] FLOAT NULL, 
     [GalvSkinRes] FLOAT NULL, 
-    [Acceleromteter] FLOAT NULL, 
-    [DomainUserId] INT NOT NULL, 
-    [BandId] NCHAR(10) NULL, 
-    CONSTRAINT [FK_BandTelemtry_DomainUser] FOREIGN KEY ([DomainUserId]) REFERENCES [DomainUser]([Id])
+    [Accelerometer] FLOAT NULL, 
+    [Microphone] FLOAT NULL, 
+    CONSTRAINT [FK_BandTelemtry_DomainUser] FOREIGN KEY ([SkinTemperature]) REFERENCES [DomainUser]([Id])
 )

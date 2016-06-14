@@ -8,7 +8,7 @@ namespace BioInfo.Web.Core.Interfaces
 {
     public interface IMessage
     {
-        string Serialize();
-        IMessage DeSerialize(string message);
+        string JsonSerialize();
+        FunctionResult<IMessage> JsonDeSerialize(string message);
     }
 }

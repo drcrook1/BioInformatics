@@ -70,4 +70,53 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="BandTelemetryId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="ac02e0fe-f5f6-440c-af79-c2322ed1aba7" ChangeDateTime="06/14/2016 16:02:47">
+    <Property Name="ElementName" Value="[dbo].[BandTelemetry].[Barometer]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BandTelemetry]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Longitude" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ba1831a3-31aa-4fe9-8d1d-9ecad118257c" ChangeDateTime="06/14/2016 16:02:52">
+    <Property Name="ElementName" Value="[dbo].[BandTelemetry].[HeartRate]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BandTelemetry]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Latitude" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="14ac6079-9d27-4723-adfc-06e3bccda310" ChangeDateTime="06/14/2016 16:02:58">
+    <Property Name="ElementName" Value="[dbo].[BandTelemetry].[UV]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BandTelemetry]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="BarometricPressure" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="173b4bd6-8cbd-49b8-bc77-cd4da535a9c0" ChangeDateTime="06/14/2016 16:03:05">
+    <Property Name="ElementName" Value="[dbo].[BandTelemetry].[Microphone]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BandTelemetry]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Capacitance" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5ad81416-ec39-48e2-86d2-510757741179" ChangeDateTime="06/14/2016 16:03:09">
+    <Property Name="ElementName" Value="[dbo].[BandTelemetry].[GalvSkinRes]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BandTelemetry]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="HeartRate" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="59915e41-bdfe-4861-afb2-6ebaeeb4d2af" ChangeDateTime="06/14/2016 16:03:14">
+    <Property Name="ElementName" Value="[dbo].[BandTelemetry].[Acceleromteter]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BandTelemetry]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AmbientLight" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d8ba8cbd-4e8e-49e0-b2c2-ad687c7a7dbe" ChangeDateTime="06/14/2016 16:03:19">
+    <Property Name="ElementName" Value="[dbo].[BandTelemetry].[DomainUserId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BandTelemetry]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SkinTemperature" />
+  </Operation>
 </Operations>

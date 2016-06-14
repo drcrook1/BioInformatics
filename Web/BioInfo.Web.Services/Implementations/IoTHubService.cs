@@ -14,11 +14,9 @@ namespace BioInfo.Web.Services.Implementations
     {
         private static RegistryManager regManager;
         private static ServiceClient serviceClient;
-        private ILoggingService loggingService;
 
-        public IoTHubService(string iotHubConnString, ILoggingService loggingService)
+        public IoTHubService(string iotHubConnString)
         {
-            this.loggingService = loggingService;
             regManager = RegistryManager.CreateFromConnectionString(iotHubConnString);
             serviceClient = ServiceClient.CreateFromConnectionString(iotHubConnString);
         }
@@ -33,11 +31,11 @@ namespace BioInfo.Web.Services.Implementations
             var commandMessage = new Message(Encoding.ASCII.GetBytes(message));
             try
             {
-                await serviceClient.SendAsync(device.GetName(), commandMessage);
+                var devName = device.GetName().GetResult();
+                await serviceClient.SendAsync(devName, commandMessage);
             }
             catch(Exception e)
             {
-                loggingService.LogException(e);
                 return new FunctionResult<bool>(false, e.Message, true);
             }
             return new FunctionResult<bool>(true);
@@ -55,18 +53,17 @@ namespace BioInfo.Web.Services.Implementations
         public async Task<FunctionResult<bool>> RegisterDeviceAsync(IDevice device)
         {
             Device azureDevice;
+            var devName = device.GetName().GetResult();
             try
-            {
-                azureDevice = await regManager.AddDeviceAsync(new Device(device.GetName()));
+            {                
+                azureDevice = await regManager.AddDeviceAsync(new Device(devName));
             }
             catch (DeviceAlreadyExistsException e)
             {
-                azureDevice = await regManager.GetDeviceAsync(device.GetName());
-                loggingService.LogException(e);
+                azureDevice = await regManager.GetDeviceAsync(devName);
             }
             catch(Exception e)
             {
-                loggingService.LogException(e);
                 return new FunctionResult<bool>(false, e.Message, true);
             }
             return new FunctionResult<bool>(true);
