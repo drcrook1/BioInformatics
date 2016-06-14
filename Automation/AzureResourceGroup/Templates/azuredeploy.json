@@ -41,6 +41,10 @@
       ],
       "defaultValue": "F1"
     },
+    "IoTHubLocation": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]"
+    },
     "CapacityOfIoTHub": {
       "type": "int",
       "defaultValue": 1
