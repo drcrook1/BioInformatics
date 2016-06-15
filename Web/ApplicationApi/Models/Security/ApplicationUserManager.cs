@@ -1,15 +1,23 @@
-﻿//using System;
+﻿//using BioInfo.Web.Core.EntityFramework;
+//using System.Collections;
 //using System.Collections.Generic;
+//using System.Data.Entity;
 //using System.Linq;
-//using System.Text;
+//using System.Linq.Expressions;
 //using System.Threading.Tasks;
+//using Microsoft.AspNet.Identity;
+//using Microsoft.AspNet.Identity.EntityFramework;
+//using Microsoft.AspNet.Identity.Owin;
+//using Microsoft.Owin;
+//using System.Configuration;
+//using System;
 
 //namespace BioInfo.Web.Core.Security
 //{
 //    public class ApplicationUserManager : UserManager<ApplicationUser>
 //    {
 //        private bool _disposed;
-//        private readonly ApplicationDbContext _dbContext;
+//        private readonly BioInfoDBContext _dbContext;
 
 //        public ApplicationUserManager(IUserStore<ApplicationUser> store)
 //            : base(store)
@@ -17,14 +25,14 @@
 //            var userManager = store as UserStore<ApplicationUser>;
 //            if (userManager != null)
 //            {
-//                _dbContext = userManager.Context as ApplicationDbContext;
+//                _dbContext = userManager.Context as BioInfoDBContext;
 //            }
 
 //        }
 
 //        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
 //        {
-//            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
+//            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<BioInfoDBContext>()));
 //            ConfigureValidationLogicForUserNames(manager);
 //            ConfigureValidationLogicForPasswords(manager);
 

@@ -6,11 +6,11 @@ namespace BioInfo.Web.Core.EntityFramework
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Band")]
-    public partial class Band
+    [Table("Experiment")]
+    public partial class Experiment
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Band()
+        public Experiment()
         {
             BandExperiments = new HashSet<BandExperiment>();
         }
@@ -18,15 +18,21 @@ namespace BioInfo.Web.Core.EntityFramework
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
-        public int? DomainUserId { get; set; }
+        public DateTime? StartTime { get; set; }
 
-        public bool IsActive { get; set; }
+        public DateTime? EndTime { get; set; }
 
-        [StringLength(255)]
-        public string IoTHubKey { get; set; }
+        [StringLength(4000)]
+        public string StartCondition { get; set; }
 
-        [StringLength(255)]
-        public string IoTHubId { get; set; }
+        [StringLength(4000)]
+        public string EndCondition { get; set; }
+
+        [StringLength(4000)]
+        public string Notes { get; set; }
+
+        [StringLength(50)]
+        public string ExperimentType { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BandExperiment> BandExperiments { get; set; }

@@ -12,7 +12,8 @@ namespace BioInfo.Web.Core.EntityFramework
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DomainUser()
         {
-            BandTelemtries = new HashSet<BandTelemtry>();
+            BandExperiments = new HashSet<BandExperiment>();
+            BandTelemetries = new HashSet<BandTelemetry>();
         }
 
         public int Id { get; set; }
@@ -52,6 +53,9 @@ namespace BioInfo.Web.Core.EntityFramework
         public bool HasGlasses { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BandTelemtry> BandTelemtries { get; set; }
+        public virtual ICollection<BandExperiment> BandExperiments { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BandTelemetry> BandTelemetries { get; set; }
     }
 }
