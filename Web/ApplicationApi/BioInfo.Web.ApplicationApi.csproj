@@ -135,6 +135,7 @@
   <ItemGroup>
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\DeviceAdminController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -150,7 +151,16 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\BioInfo.Web.Core\BioInfo.Web.Core.csproj">
+      <Project>{971d67b3-6d81-4a33-8e28-63cf2c874f32}</Project>
+      <Name>BioInfo.Web.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BioInfo.Web.Services\BioInfo.Web.Services.csproj">
+      <Project>{d26a4796-5429-4bdc-9de2-1b21f994b4b9}</Project>
+      <Name>BioInfo.Web.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

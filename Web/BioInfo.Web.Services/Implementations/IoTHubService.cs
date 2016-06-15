@@ -21,7 +21,7 @@ namespace BioInfo.Web.Services.Implementations
             serviceClient = ServiceClient.CreateFromConnectionString(iotHubConnString);
         }
 
-        public Task<FunctionResult<bool>> UnregisterDeviceAsync()
+        public Task<FunctionResult<bool>> UnregisterDeviceAsync(IDevice device)
         {
             throw new NotImplementedException();
         }
