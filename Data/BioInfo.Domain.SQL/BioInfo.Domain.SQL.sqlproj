@@ -57,18 +57,30 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="dbo" />
+    <Folder Include="dbo\domain" />
+    <Folder Include="dbo\security" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="DomainUser.sql" />
-    <Build Include="BandTelemetry.sql" />
-    <Build Include="Band.sql" />
-    <Build Include="Experiment.sql" />
-    <Build Include="BandExperiment.sql" />
+    <Build Include="dbo\domain\Band.sql" />
+    <Build Include="dbo\domain\BandExperiment.sql" />
+    <Build Include="dbo\domain\BandTelemetry.sql" />
+    <Build Include="dbo\domain\DomainUser.sql" />
+    <Build Include="dbo\security\AspNetRoles.sql" />
+    <Build Include="dbo\security\AspNetUserClaims.sql" />
+    <Build Include="dbo\security\AspNetUserLogins.sql" />
+    <Build Include="dbo\security\AspNetUserRoles.sql" />
+    <Build Include="dbo\security\AspNetUsers.sql" />
+    <Build Include="dbo\security\Clients.sql" />
+    <Build Include="dbo\security\RefreshTokens.sql" />
   </ItemGroup>
   <ItemGroup>
-    <RefactorLog Include="BioInfo.Domain.SQL.refactorlog" />
+    <RefactorLog Include="dbo\domain\BioInfo.Domain.SQL.refactorlog" />
   </ItemGroup>
   <ItemGroup>
     <None Include="BioInfo.Domain.SQL.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\domain\Experiment.sql" />
   </ItemGroup>
 </Project>

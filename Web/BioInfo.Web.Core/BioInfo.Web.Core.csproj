@@ -64,6 +64,7 @@
     <Compile Include="EntityFramework\DomainUser.cs" />
     <Compile Include="Interfaces\IAppLogMessage.cs" />
     <Compile Include="Interfaces\IDevice.cs" />
+    <Compile Include="Security\ApplicationUserManager.cs" />
     <Compile Include="UtilityObj\FunctionResult.cs" />
     <Compile Include="Interfaces\IMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
