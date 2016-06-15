@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implementations\IoTHubService.cs" />
+    <Compile Include="Interfaces\IExperimentService.cs" />
     <Compile Include="Interfaces\ILoggingService.cs" />
     <Compile Include="Interfaces\IMessagingService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
