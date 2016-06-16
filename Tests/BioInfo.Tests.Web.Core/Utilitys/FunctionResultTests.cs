@@ -42,7 +42,7 @@ namespace BioInfo.Tests.Web.Core.Utilitys
         [TestMethod]
         public void Failed_shortcut_marks_as_did_fail_with_error_message()
         {
-            var result = FunctionResult<bool>.Fail("error message");
+            var result = FunctionResult.Fail("error message");
 
             Assert.IsTrue(result.DidFail());
             Assert.AreEqual(result.GetFriendlyError(), "error message");
