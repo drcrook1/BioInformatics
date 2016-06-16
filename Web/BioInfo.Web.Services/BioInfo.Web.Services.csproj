@@ -115,6 +115,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IDeviceRegistration.cs" />
     <Compile Include="Implementations\IoTHubService.cs" />
     <Compile Include="Implementations\SendGridEmailService.cs" />
     <Compile Include="Interfaces\IExperimentService.cs" />
