@@ -10,7 +10,7 @@ namespace BioInfo.Web.Core.Interfaces
     {
         private T result;
         private string err;
-        private bool didFail;
+        private bool didFail = false;
         public FunctionResult(T result, string friendlyError = null, bool didFail = false)
         {
             this.result = result;
