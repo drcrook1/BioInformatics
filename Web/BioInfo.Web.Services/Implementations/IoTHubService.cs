@@ -10,7 +10,7 @@ using BioInfo.Web.Services.Interfaces;
 
 namespace BioInfo.Web.Services.Implementations
 {
-    public class IoTHubService : IMessagingService
+    public class IoTHubService : IMessagingService, IDeviceRegistration
     {
         private static RegistryManager regManager;
         private static ServiceClient serviceClient;
