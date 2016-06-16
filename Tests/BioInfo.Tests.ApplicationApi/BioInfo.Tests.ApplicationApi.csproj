@@ -78,6 +78,7 @@
   <ItemGroup>
     <Compile Include="DeviceAdminControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestHelpers\FakeDevice.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Web\ApplicationApi\BioInfo.Web.ApplicationApi.csproj">

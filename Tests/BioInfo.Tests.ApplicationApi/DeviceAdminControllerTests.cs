@@ -7,17 +7,12 @@ using BioInfo.Web.Core.Interfaces;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
+using BioInfo.Tests.ApplicationApi.TestHelpers;
 
 namespace BioInfo.Tests.ApplicationApi
 {
 
-    public class Device : IDevice
-    {
-        public FunctionResult<string> GetName()
-        {
-            return new FunctionResult<string>("FakeDevice");
-        }
-    }
+   
 
     [TestClass]
     public class DeviceAdminControllerTests
@@ -25,32 +20,35 @@ namespace BioInfo.Tests.ApplicationApi
         [TestMethod]
         public async Task Register_device_should_return_200()
         {
-            var deviceRegistration = new Mock<IDeviceRegistration>();
-            deviceRegistration.Setup(x => x.RegisterDeviceAsync(It.IsAny<IDevice>())).Returns(Task.FromResult(new FunctionResult<bool>(true)));
-
+            Mock<IDeviceRegistration> deviceRegistration = RegisterDevice(() => FunctionResult.Success(true));
             var adminController = new DeviceAdminController(deviceRegistration.Object);
 
-            IHttpActionResult result = await adminController.RegisterDevice(new Device());
+            IHttpActionResult result = await adminController.RegisterDevice(new FakeDevice());
 
-    
             Assert.IsInstanceOfType(result, typeof(OkNegotiatedContentResult<bool>));
         }
 
         [TestMethod]
         public async Task Register_device_should_return_bad_request()
         {
-            var deviceRegistration = new Mock<IDeviceRegistration>();
-            deviceRegistration.Setup(x => x.RegisterDeviceAsync(It.IsAny<IDevice>())).Returns(Task.FromResult(new FunctionResult<bool>(false, "error message",true)));
-
+            var ERRORMESSAGE = "error message";
+            Mock<IDeviceRegistration> deviceRegistration = RegisterDevice(() => FunctionResult.Fail(ERRORMESSAGE));
             var adminController = new DeviceAdminController(deviceRegistration.Object);
 
-            IHttpActionResult result = await adminController.RegisterDevice(new Device());
+            IHttpActionResult result = await adminController.RegisterDevice(new FakeDevice());
 
 
             Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
             var badRequest = result as BadRequestErrorMessageResult;
 
-            Assert.AreEqual(badRequest.Message, "error message");
+            Assert.AreEqual(badRequest.Message, ERRORMESSAGE);
+        }
+
+        private static Mock<IDeviceRegistration> RegisterDevice(Func<FunctionResult<bool>> result)
+        {
+            var deviceRegistration = new Mock<IDeviceRegistration>();
+            deviceRegistration.Setup(x => x.RegisterDeviceAsync(It.IsAny<IDevice>())).Returns(Task.FromResult(result()));
+            return deviceRegistration;
         }
     }
 }

@@ -32,12 +32,17 @@ namespace BioInfo.Web.Core.Interfaces
 
     }
 
-    public class FunctionResult
+    public static class FunctionResult
     {
 
         public static FunctionResult<bool> Fail(string friendlyError)
         {
             return new FunctionResult<bool>(false, friendlyError, true);
+        }
+
+        public static FunctionResult<T> Success<T>(T result)
+        {
+            return new FunctionResult<T>(result);
         }
     }
 }

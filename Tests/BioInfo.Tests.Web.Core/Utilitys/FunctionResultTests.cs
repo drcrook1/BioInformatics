@@ -47,5 +47,14 @@ namespace BioInfo.Tests.Web.Core.Utilitys
             Assert.IsTrue(result.DidFail());
             Assert.AreEqual(result.GetFriendlyError(), "error message");
         }
+
+        [TestMethod]
+        public void Success_shortcut_marks_didfail_is_false_and_returns_result()
+        {
+            var result = FunctionResult.Success("result");
+
+            Assert.IsFalse(result.DidFail());
+            Assert.AreEqual(result.GetResult(), "result");
+        }
     }
 }
