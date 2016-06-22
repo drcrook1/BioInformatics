@@ -15,6 +15,12 @@ namespace BioInfo.Web.Core.EntityFramework
             BandExperiments = new HashSet<BandExperiment>();
         }
 
+        public Band(string ioTHubName, int userId)
+        {
+            this.IoTHubId = ioTHubName;
+            this.DomainUserId = userId;
+        }
+
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 

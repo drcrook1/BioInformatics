@@ -43,6 +43,12 @@ namespace BioInfo.Web.Core.Interfaces
         public static FunctionResult<T> Success<T>(T result)
         {
             return new FunctionResult<T>(result);
+
+        }
+
+        public static FunctionResult<bool> Success()
+        {
+            return new FunctionResult<bool>(true);
         }
     }
 }

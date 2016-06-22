@@ -7,7 +7,7 @@ using BioInfo.Web.Core.Interfaces;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
-using BioInfo.Tests.ApplicationApi.TestHelpers;
+using BioInfo.Tests.Helpers;
 
 namespace BioInfo.Tests.ApplicationApi
 {

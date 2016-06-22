@@ -23,7 +23,7 @@ namespace BioInfo.Web.Services.Implementations
 
         public async Task<FunctionResult<bool>> UnregisterDeviceAsync(IDevice device)
         {
-            var devName = device.GetName().GetResult();
+            var devName = device.Name;
             try
             {
                 await regManager.RemoveDeviceAsync(devName);
@@ -40,7 +40,7 @@ namespace BioInfo.Web.Services.Implementations
             var commandMessage = new Message(Encoding.ASCII.GetBytes(message));
             try
             {
-                var devName = device.GetName().GetResult();
+                var devName = device.Name;
                 await serviceClient.SendAsync(devName, commandMessage);
             }
             catch(Exception e)
@@ -62,7 +62,7 @@ namespace BioInfo.Web.Services.Implementations
         public async Task<FunctionResult<bool>> RegisterDeviceAsync(IDevice device)
         {
             Device azureDevice;
-            var devName = device.GetName().GetResult();
+            var devName = device.Name;
             try
             {                
                 azureDevice = await regManager.AddDeviceAsync(new Device(devName));

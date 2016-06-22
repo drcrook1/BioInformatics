@@ -11,15 +11,31 @@ namespace BioInfo.Web.Core.DTOs
     public class IoTHubDevice : IDevice, IMessage
     {
         private string _name;
-        public IoTHubDevice(string name)
+        private int _domainUserId;
+
+        public int DomainUserId
         {
-            this._name = name;
+            get
+            {
+                return _domainUserId;
+            }
         }
 
-        public FunctionResult<string> GetName()
+        public string Name
         {
-            return new FunctionResult<string>(_name);
+            get
+            {
+                return _name;
+            }
         }
+
+        public IoTHubDevice(string name, int domainUserId)
+        {
+            this._name = name;
+            this._domainUserId = domainUserId;
+        }
+
+    
 
         public string JsonSerialize()
         {
