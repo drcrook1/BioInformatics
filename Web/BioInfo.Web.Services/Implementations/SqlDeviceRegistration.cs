@@ -21,7 +21,7 @@ namespace BioInfo.Web.Services.Implementations
         {
             try
             {
-                bool userExists = deviceRegistry.DomainUsers.Any(x => x.Id == device.DomainUserId);
+                bool userExists = deviceRegistry.DomainUsers.Any(x => x.Id == device.OwnerId);
                 if (!userExists)
                 {
                     FunctionResult.Fail("There is no register user.  Please register user before registering device.");
@@ -33,7 +33,7 @@ namespace BioInfo.Web.Services.Implementations
                     FunctionResult.Fail("Device has already been registered");
                 }
 
-                var band = new Band(device.Name, device.DomainUserId);
+                var band = new Band(device.Name, device.OwnerId);
                 deviceRegistry.Bands.Add(band);
                 await deviceRegistry.SaveChangesAsync();
             }
@@ -49,7 +49,7 @@ namespace BioInfo.Web.Services.Implementations
         {
             try
             {
-                var band = new Band(device.Name, device.DomainUserId);
+                var band = new Band(device.Name, device.OwnerId);
                 deviceRegistry.Bands.Remove(band);
                 await deviceRegistry.SaveChangesAsync();
             }

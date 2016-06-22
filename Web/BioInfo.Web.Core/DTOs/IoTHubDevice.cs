@@ -13,7 +13,7 @@ namespace BioInfo.Web.Core.DTOs
         private string _name;
         private int _domainUserId;
 
-        public int DomainUserId
+        public int OwnerId
         {
             get
             {

@@ -9,7 +9,7 @@ namespace BioInfo.Tests.Helpers
 {
     public class FakeDevice : IDevice
     {
-        public int DomainUserId
+        public int OwnerId
         {
             get
             {
