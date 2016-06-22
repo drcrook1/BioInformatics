@@ -13,18 +13,18 @@ namespace BioInfo.Web.ApplicationApi.Controllers
     [RoutePrefix("api/DeviceAdmin")]
     public class DeviceAdminController : ApiController
     {
-        IDeviceRegistration RegistrationService = null;
+        IDeviceRegistration registrationService = null;
 
-        public DeviceAdminController(IDeviceRegistration messagingService)
+        public DeviceAdminController(IDeviceRegistration registrationService)
         {
-            this.RegistrationService = messagingService;
+            this.registrationService = registrationService;
         }
 
         [HttpPost]
         [Route("RegisterDevice")]
         public async Task<IHttpActionResult> RegisterDevice([FromBody]IDevice device)
         {
-            var result = await RegistrationService.RegisterDeviceAsync(device);
+            var result = await registrationService.RegisterDeviceAsync(device);
             if (result.DidFail())
                 return BadRequest(result.GetFriendlyError());
             return Ok(result.GetResult());
@@ -34,7 +34,7 @@ namespace BioInfo.Web.ApplicationApi.Controllers
         [Route("UnregisterDevice")]
         public async Task<IHttpActionResult> UnregisterDevice([FromBody]IDevice device)
         {
-            var result = await RegistrationService.UnregisterDeviceAsync(device);
+            var result = await registrationService.UnregisterDeviceAsync(device);
             if (result.DidFail())
                 return BadRequest(result.GetFriendlyError());
             return Ok(result.GetResult());
