@@ -21,6 +21,9 @@ namespace BioInfo.Web.Services.Implementations
 
         public async Task<FunctionResult<bool>> RegisterDevice(IDevice device)
         {
+            // Kept this registration faily simple for now.  
+            // There are many scenarios to consider such partial registration that could potentially
+            // handled via more complex logic.  
             var sqlResult = await sqlRegister.RegisterDeviceAsync(device);
             if (sqlResult.DidFail())
             {
