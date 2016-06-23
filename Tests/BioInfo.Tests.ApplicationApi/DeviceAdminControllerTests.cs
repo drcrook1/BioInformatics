@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
 using BioInfo.Tests.Helpers;
+using BioInfo.Web.Services.Implementations;
 
 namespace BioInfo.Tests.ApplicationApi
 {
@@ -20,7 +21,7 @@ namespace BioInfo.Tests.ApplicationApi
         [TestMethod]
         public async Task Register_device_should_return_200()
         {
-            Mock<IDeviceRegistration> deviceRegistration = RegisterDevice(() => FunctionResult.Success(true));
+            Mock<IRegistrationCoordinator> deviceRegistration = RegisterDevice(() => FunctionResult.Success(true));
             var adminController = new DeviceAdminController(deviceRegistration.Object);
 
             IHttpActionResult result = await adminController.RegisterDevice(new FakeDevice());
@@ -32,7 +33,7 @@ namespace BioInfo.Tests.ApplicationApi
         public async Task Register_device_should_return_bad_request()
         {
             var ERRORMESSAGE = "error message";
-            Mock<IDeviceRegistration> deviceRegistration = RegisterDevice(() => FunctionResult.Fail(ERRORMESSAGE));
+            Mock<IRegistrationCoordinator> deviceRegistration = RegisterDevice(() => FunctionResult.Fail(ERRORMESSAGE));
             var adminController = new DeviceAdminController(deviceRegistration.Object);
 
             IHttpActionResult result = await adminController.RegisterDevice(new FakeDevice());
@@ -44,9 +45,9 @@ namespace BioInfo.Tests.ApplicationApi
             Assert.AreEqual(badRequest.Message, ERRORMESSAGE);
         }
 
-        private static Mock<IDeviceRegistration> RegisterDevice(Func<FunctionResult<bool>> result)
+        private static Mock<IRegistrationCoordinator> RegisterDevice(Func<FunctionResult<bool>> result)
         {
-            var deviceRegistration = new Mock<IDeviceRegistration>();
+            var deviceRegistration = new Mock<IRegistrationCoordinator>();
             deviceRegistration.Setup(x => x.RegisterDeviceAsync(It.IsAny<IDevice>())).Returns(Task.FromResult(result()));
             return deviceRegistration;
         }

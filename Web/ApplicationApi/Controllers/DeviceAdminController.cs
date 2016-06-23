@@ -1,5 +1,6 @@
 ﻿using BioInfo.Web.Core.Interfaces;
 using BioInfo.Web.Services;
+using BioInfo.Web.Services.Implementations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,9 @@ namespace BioInfo.Web.ApplicationApi.Controllers
     [RoutePrefix("api/DeviceAdmin")]
     public class DeviceAdminController : ApiController
     {
-        IDeviceRegistration registrationService = null;
+        IRegistrationCoordinator registrationService = null;
 
-        public DeviceAdminController(IDeviceRegistration registrationService)
+        public DeviceAdminController(IRegistrationCoordinator registrationService)
         {
             this.registrationService = registrationService;
         }

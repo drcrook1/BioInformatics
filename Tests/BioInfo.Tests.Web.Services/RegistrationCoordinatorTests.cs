@@ -17,9 +17,9 @@ namespace BioInfo.Tests.Web.Services
         {
             var iotRegistaration = SetupRegistrationForSuccess();
             var sqlRegirstion = SetupRegistrationForSuccess();
-            var regCoordinator = new RegistrationCoordinator(iotRegistaration.Object, sqlRegirstion.Object);
+            var regCoordinator = new SimpleRegistrationCoordinator(iotRegistaration.Object, sqlRegirstion.Object);
 
-            var result = await regCoordinator.RegisterDevice(new FakeDevice());
+            var result = await regCoordinator.RegisterDeviceAsync(new FakeDevice());
 
             Assert.IsFalse(result.DidFail());
             sqlRegirstion.Verify(x => x.RegisterDeviceAsync(It.IsAny<IDevice>()), Times.Once);
@@ -31,9 +31,9 @@ namespace BioInfo.Tests.Web.Services
         {
             var iotRegistaration = SetupRegistrationForSuccess();
             var sqlRegirstion = SetupRegistrationForFailure();
-            var regCoordinator = new RegistrationCoordinator(iotRegistaration.Object, sqlRegirstion.Object);
+            var regCoordinator = new SimpleRegistrationCoordinator(iotRegistaration.Object, sqlRegirstion.Object);
 
-            var result = await regCoordinator.RegisterDevice(new FakeDevice());
+            var result = await regCoordinator.RegisterDeviceAsync(new FakeDevice());
 
             Assert.IsTrue(result.DidFail());
             sqlRegirstion.Verify(x => x.RegisterDeviceAsync(It.IsAny<IDevice>()), Times.Once);
@@ -45,9 +45,9 @@ namespace BioInfo.Tests.Web.Services
         {
             var iotRegistaration = SetupRegistrationForFailure();
             var sqlRegirstion = SetupRegistrationForSuccess();
-            var regCoordinator = new RegistrationCoordinator(iotRegistaration.Object, sqlRegirstion.Object);
+            var regCoordinator = new SimpleRegistrationCoordinator(iotRegistaration.Object, sqlRegirstion.Object);
 
-            var result = await regCoordinator.RegisterDevice(new FakeDevice());
+            var result = await regCoordinator.RegisterDeviceAsync(new FakeDevice());
 
             Assert.IsTrue(result.DidFail());
             sqlRegirstion.Verify(x => x.RegisterDeviceAsync(It.IsAny<IDevice>()), Times.Once);
