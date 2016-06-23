@@ -127,8 +127,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Implementations\IDeviceContext.cs" />
-    <Compile Include="Implementations\IRegistrationCoordinator.cs" />
+    <Compile Include="Interfaces\IRegistrationCoordinator.cs" />
     <Compile Include="Implementations\RegistrationCoordinator.cs" />
     <Compile Include="Implementations\SqlDeviceRegistration.cs" />
     <Compile Include="Interfaces\IDeviceRegistration.cs" />
