@@ -11,13 +11,13 @@ namespace BioInfo.Web.Core.DTOs
     public class IoTHubDevice : IDevice, IMessage
     {
         private string _name;
-        private int _domainUserId;
+        private int _ownerId;
 
         public int OwnerId
         {
             get
             {
-                return _domainUserId;
+                return _ownerId;
             }
         }
 
@@ -29,10 +29,10 @@ namespace BioInfo.Web.Core.DTOs
             }
         }
 
-        public IoTHubDevice(string name, int domainUserId)
+        public IoTHubDevice(string name, int ownerId)
         {
             this._name = name;
-            this._domainUserId = domainUserId;
+            this._ownerId = ownerId;
         }
 
     
