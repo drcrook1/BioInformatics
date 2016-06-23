@@ -12,11 +12,6 @@ namespace BioInfo.Web.Services.Implementations
     {
         private BioInfoDBContext deviceRegistry;
 
-        public SqlDeviceRegistration()
-        {
-            this.deviceRegistry = new BioInfoDBContext();
-        }
-
         public SqlDeviceRegistration(string connectionString)
         {
             this.deviceRegistry = new BioInfoDBContext(connectionString);
@@ -29,13 +24,13 @@ namespace BioInfo.Web.Services.Implementations
                 bool userExists = deviceRegistry.DomainUsers.Any(x => x.Id == device.OwnerId);
                 if (!userExists)
                 {
-                    FunctionResult.Fail("There is no register user.  Please register user before registering device.");
+                    return FunctionResult.Fail("There is no register user.  Please register user before registering device.");
                 }
 
                 bool bandExists = deviceRegistry.Bands.Any(x => x.IoTHubId == device.Name);
-                if (!bandExists)
+                if (bandExists)
                 {
-                    FunctionResult.Fail("Device has already been registered");
+                    return FunctionResult.Fail("Device has already been registered");
                 }
 
                 var band = new Band(device.Name, device.OwnerId);
@@ -44,7 +39,7 @@ namespace BioInfo.Web.Services.Implementations
             }
             catch (Exception ex)
             {
-                FunctionResult.Fail(ex.Message);
+                return FunctionResult.Fail(ex.Message);
             }
 
             return FunctionResult.Success();
@@ -60,7 +55,7 @@ namespace BioInfo.Web.Services.Implementations
             }
             catch (Exception ex)
             {
-                FunctionResult.Fail(ex.Message);
+                return FunctionResult.Fail(ex.Message);
             }
 
             return FunctionResult.Success();
