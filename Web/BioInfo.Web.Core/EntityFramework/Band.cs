@@ -12,7 +12,7 @@ namespace BioInfo.Web.Core.EntityFramework
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Band()
         {
-            BandExperiments = new HashSet<BandExperiment>();
+          
         }
 
         public Band(string ioTHubName, int userId)
@@ -35,6 +35,6 @@ namespace BioInfo.Web.Core.EntityFramework
         public string IoTHubId { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BandExperiment> BandExperiments { get; set; }
+        public virtual ICollection<BandExperiment> BandExperiments { get; set; } = new HashSet<BandExperiment>();
     }
 }
