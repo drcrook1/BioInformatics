@@ -7,14 +7,13 @@ namespace BioInfo.Web.Core.EntityFramework
 
     public partial class BioInfoDBContext : DbContext
     {
-        public BioInfoDBContext()
-            : base("name=BioInfoDBContext")
-        {
-        }
-
+       
         public BioInfoDBContext(string connectionString)
            : base(connectionString)
         {
+#if DEBUG
+            Database.SetInitializer(new BioInfoDBInitializer());
+#endif
         }
 
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
@@ -86,6 +85,27 @@ namespace BioInfo.Web.Core.EntityFramework
                 .HasMany(e => e.BandExperiments)
                 .WithRequired(e => e.Experiment)
                 .WillCascadeOnDelete(false);
+        }
+    }
+
+    public class BioInfoDBInitializer : DropCreateDatabaseAlways<BioInfoDBContext>
+    {
+        protected override void Seed(BioInfoDBContext context)
+        {
+
+            var dUser = new DomainUser()
+            {
+                Id = 1,
+                First_Name = "First",
+                Last_Name = "Last",
+                Gender = "Alien", //why are these required?
+                Race = "Super", //why are these required?,
+                BirthDate = DateTime.Now.AddYears(-20)
+            };
+
+            context.DomainUsers.Add(dUser);
+
+            base.Seed(context);
         }
     }
 }
