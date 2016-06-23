@@ -1,4 +1,5 @@
-﻿using BioInfo.Web.Core.Interfaces;
+﻿using BioInfo.Web.Core.DTOs;
+using BioInfo.Web.Core.Interfaces;
 using BioInfo.Web.Services;
 using BioInfo.Web.Services.Implementations;
 using System;
@@ -23,7 +24,7 @@ namespace BioInfo.Web.ApplicationApi.Controllers
 
         [HttpPost]
         [Route("RegisterDevice")]
-        public async Task<IHttpActionResult> RegisterDevice([FromBody]IDevice device)
+        public async Task<IHttpActionResult> RegisterDevice([FromBody]IoTHubDevice device)
         {
             var result = await registrationService.RegisterDeviceAsync(device);
             if (result.DidFail())
@@ -33,7 +34,7 @@ namespace BioInfo.Web.ApplicationApi.Controllers
 
         [HttpPost]
         [Route("UnregisterDevice")]
-        public async Task<IHttpActionResult> UnregisterDevice([FromBody]IDevice device)
+        public async Task<IHttpActionResult> UnregisterDevice([FromBody]IoTHubDevice device)
         {
             var result = await registrationService.UnregisterDeviceAsync(device);
             if (result.DidFail())
