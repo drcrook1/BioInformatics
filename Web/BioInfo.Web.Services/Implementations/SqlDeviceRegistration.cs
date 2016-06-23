@@ -8,13 +8,18 @@ using BioInfo.Web.Core.EntityFramework;
 
 namespace BioInfo.Web.Services.Implementations
 {
-    class SqlDeviceRegistration : IDeviceRegistration
+    public class SqlDeviceRegistration : IDeviceRegistration
     {
         private BioInfoDBContext deviceRegistry;
 
         public SqlDeviceRegistration()
         {
             this.deviceRegistry = new BioInfoDBContext();
+        }
+
+        public SqlDeviceRegistration(string connectionString)
+        {
+            this.deviceRegistry = new BioInfoDBContext(connectionString);
         }
 
         public async Task<FunctionResult<bool>> RegisterDeviceAsync(IDevice device)

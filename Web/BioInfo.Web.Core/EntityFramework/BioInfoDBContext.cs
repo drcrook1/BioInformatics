@@ -12,6 +12,11 @@ namespace BioInfo.Web.Core.EntityFramework
         {
         }
 
+        public BioInfoDBContext(string connectionString)
+           : base(connectionString)
+        {
+        }
+
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
