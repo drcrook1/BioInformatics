@@ -7,8 +7,9 @@ namespace BioInfo.Web.ApplicationApi
 {
     public static class WebApiConfig
     {
-        public static void Register(HttpConfiguration config)
+        public static HttpConfiguration Register()
         {
+            HttpConfiguration config = new HttpConfiguration();
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
@@ -16,8 +17,7 @@ namespace BioInfo.Web.ApplicationApi
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-
-            UnityConfig.RegisterComponents();
+            return config;
         }
     }
 }
