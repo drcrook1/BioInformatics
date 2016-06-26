@@ -24,7 +24,7 @@ namespace BioInfo.Web.ApplicationApi.Models.Security.BindingModels
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        [Required(ErrorMessage = "Client ID must be set in order to register with foosye")]
+        [Required(ErrorMessage = "Client ID must be set")]
         public string ClientId { get; set; }
 
         public string FirstName { get; set; }

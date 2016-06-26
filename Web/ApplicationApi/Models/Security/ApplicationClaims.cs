@@ -8,7 +8,7 @@ namespace BioInfo.Web.ApplicationApi.Models.Security
 {
     public static class ApplicationClaims
     {
-        public static string Realm = "foosyeRealm";
+        public static string Realm = "BioInfo";
     }
 
     public static class RealmTypes
