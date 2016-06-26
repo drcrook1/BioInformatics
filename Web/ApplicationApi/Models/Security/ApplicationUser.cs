@@ -7,7 +7,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BioInfo.Web.Core.Security
+namespace BioInfo.Web.ApplicationApi.Models.Security
 {
     public class ApplicationUser : IdentityUser
     {

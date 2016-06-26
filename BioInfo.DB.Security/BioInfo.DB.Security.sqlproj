@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>BioInfo.Domain.SQL</Name>
+    <Name>BioInfo.DB.Security</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{03689493-ced0-4b98-9162-5bffcd6fb640}</ProjectGuid>
+    <ProjectGuid>{ef86440d-41d1-4f3d-b69b-8dd2840b354f}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.SqlAzureV12DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>BioInfo.Domain.SQL</RootNamespace>
-    <AssemblyName>BioInfo.Domain.SQL</AssemblyName>
+    <RootNamespace>BioInfo.DB.Security</RootNamespace>
+    <AssemblyName>BioInfo.DB.Security</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
@@ -58,21 +58,17 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="dbo" />
-    <Folder Include="dbo\domain" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\domain\Band.sql" />
-    <Build Include="dbo\domain\BandExperiment.sql" />
-    <Build Include="dbo\domain\BandTelemetry.sql" />
-    <Build Include="dbo\domain\DomainUser.sql" />
+    <Build Include="dbo\AspNetRoles.sql" />
+    <Build Include="dbo\AspNetUserClaims.sql" />
+    <Build Include="dbo\AspNetUserLogins.sql" />
+    <Build Include="dbo\AspNetUserRoles.sql" />
+    <Build Include="dbo\AspNetUsers.sql" />
+    <Build Include="dbo\Clients.sql" />
+    <Build Include="dbo\RefreshTokens.sql" />
   </ItemGroup>
   <ItemGroup>
-    <RefactorLog Include="dbo\domain\BioInfo.Domain.SQL.refactorlog" />
-  </ItemGroup>
-  <ItemGroup>
-    <Build Include="dbo\domain\Experiment.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="BioInfo.Domain.SQL.publish.xml" />
+    <None Include="BioInfo.DB.Security.publish.xml" />
   </ItemGroup>
 </Project>

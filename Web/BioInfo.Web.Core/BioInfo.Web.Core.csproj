@@ -90,10 +90,6 @@
     <Compile Include="DTOs\BandTelemetryMessage.cs" />
     <Compile Include="DTOs\ExperimentMessage.cs" />
     <Compile Include="DTOs\IoTHubDevice.cs" />
-    <Compile Include="EntityFramework\AspNetRole.cs" />
-    <Compile Include="EntityFramework\AspNetUser.cs" />
-    <Compile Include="EntityFramework\AspNetUserClaim.cs" />
-    <Compile Include="EntityFramework\AspNetUserLogin.cs" />
     <Compile Include="EntityFramework\Band.cs" />
     <Compile Include="EntityFramework\BandExperiment.cs" />
     <Compile Include="EntityFramework\BandTelemetry.cs" />
@@ -101,7 +97,6 @@
     <Compile Include="EntityFramework\Client.cs" />
     <Compile Include="EntityFramework\DomainUser.cs" />
     <Compile Include="EntityFramework\Experiment.cs" />
-    <Compile Include="EntityFramework\RefreshToken.cs" />
     <Compile Include="Interfaces\IAppLogMessage.cs" />
     <Compile Include="Interfaces\IDevice.cs" />
     <Compile Include="UtilityObj\FunctionResult.cs" />
