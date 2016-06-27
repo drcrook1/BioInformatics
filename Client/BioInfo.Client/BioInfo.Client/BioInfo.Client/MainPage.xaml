@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BioInfo.Client.MainPage"
+             xmlns:vm="clr-namespace:BioInfo.Client.ViewModels;assembly=BioInfo.Client">
+
+  <ContentPage.BindingContext>
+    <vm:MainPageViewModel />
+  </ContentPage.BindingContext>
+
+  <ContentPage.Padding>
+    <OnPlatform x:TypeArguments="Thickness">
+      <OnPlatform.iOS>
+        10, 40, 10, 10
+      </OnPlatform.iOS>
+      <OnPlatform.Android>
+        10, 30, 10, 10
+      </OnPlatform.Android>
+      <OnPlatform.WinPhone>
+        10, 30, 10, 10
+      </OnPlatform.WinPhone>
+    </OnPlatform>
+  </ContentPage.Padding>
+
+  <StackLayout>
+    
+    <Label Text="{Binding PageTitle}"
+           Font="Large"
+           FontAttributes="Bold"
+           HorizontalOptions="Center"/>
+
+    <Label Text="{Binding CurrentStatus}"
+           Font="Normal"
+           HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand" />
+
+    <Button Text="{Binding ConnectButtonText}"
+            HorizontalOptions="Center"
+            VerticalOptions="CenterAndExpand"
+            IsEnabled="{Binding ConnectButtonEnabled}"
+            Command="{Binding Connect}"/>
+
+    <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+      <Label Text="{Binding ReadHR,StringFormat='Heart Rate: {0}'}" FontSize="Medium" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+      <Switch IsToggled="{Binding IsToggleHeartRate}" HorizontalOptions="End" VerticalOptions="CenterAndExpand" IsEnabled="{Binding IsToggleEnabled}"/>
+    </StackLayout>
+
+    <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+      <Label Text="{Binding ReadGSR, StringFormat='GSR: {0} kohms'}" FontSize="Medium" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+      <Switch IsToggled="{Binding IsToggleGSR}" HorizontalOptions="End" VerticalOptions="CenterAndExpand" IsEnabled="{Binding IsToggleEnabled}"/>
+    </StackLayout>
+
+    <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+      <Label Text="{Binding ReadSkinTemp,StringFormat='Skin Temp: {0}'}" FontSize="Medium" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+      <Switch IsToggled="{Binding IsToggleSkinTemp}" HorizontalOptions="End" VerticalOptions="CenterAndExpand" IsEnabled="{Binding IsToggleEnabled}"/>
+    </StackLayout>
+
+    <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+      <Label Text="{Binding ReadAmbientLight,StringFormat='Light: {0}'}" FontSize="Medium" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+      <Switch IsToggled="{Binding IsToggleAmbientLight}" HorizontalOptions="End" VerticalOptions="CenterAndExpand" IsEnabled="{Binding IsToggleEnabled}"/>
+    </StackLayout>
+
+    <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+      <Label Text="{Binding ReadUV,StringFormat='Current UV: {0}'}" FontSize="Medium" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+      <Switch IsToggled="{Binding IsToggleUV}" HorizontalOptions="End" VerticalOptions="CenterAndExpand" IsEnabled="{Binding IsToggleEnabled}"/>
+    </StackLayout>
+
+    <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+      <Label Text="{Binding ReadPedometer,StringFormat='Steps Today: {0}'}" FontSize="Medium" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+      <Switch IsToggled="{Binding IsTogglePedometer}" HorizontalOptions="End" VerticalOptions="CenterAndExpand" IsEnabled="{Binding IsToggleEnabled}"/>
+    </StackLayout>
+
+    <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+      <Label Text="{Binding ReadCalories,StringFormat='Calories Today: {0}'}" FontSize="Medium" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+      <Switch IsToggled="{Binding IsToggleCalories}" HorizontalOptions="End" VerticalOptions="CenterAndExpand" IsEnabled="{Binding IsToggleEnabled}" />
+    </StackLayout>
+
+    <Button Text="Stop all Sensors"
+            HorizontalOptions="Center"
+            VerticalOptions="CenterAndExpand"
+            Command="{Binding StopAllSensors}"/>
+
+
+  </StackLayout>
+  
+</ContentPage>
