@@ -12,14 +12,14 @@ namespace BioInfo.Web.ApplicationApi.Models.Security.Managers
     public class SecurityDBContext : IdentityDbContext<ApplicationUser>
     {
 
-        public SecurityDBContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+        public SecurityDBContext(string DBConnString)
+            : base(DBConnString, throwIfV1Schema: false)
         {
         }
 
-        public static SecurityDBContext Create()
+        public static SecurityDBContext Create(string DBConnString)
         {
-            return new SecurityDBContext();
+            return new SecurityDBContext(DBConnString);
         }
 
         public DbSet<Client> Clients { get; set; }

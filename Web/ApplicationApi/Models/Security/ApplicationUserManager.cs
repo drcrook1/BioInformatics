@@ -37,9 +37,9 @@ namespace BioInfo.Web.ApplicationApi.Models.Security
             ConfigureValidationLogicForUserNames(manager);
             ConfigureValidationLogicForPasswords(manager);
 
-            String emailAccount = ConfigurationManager.AppSettings["emailAccount"];
-            String emailPassword = ConfigurationManager.AppSettings["emailPassword"];
-            String fromAddress = ConfigurationManager.AppSettings["fromAddress"];
+            //String emailAccount = ConfigurationManager.AppSettings["emailAccount"];
+            //String emailPassword = ConfigurationManager.AppSettings["emailPassword"];
+            //String fromAddress = ConfigurationManager.AppSettings["fromAddress"];
 
             //manager.EmailService = new SendGridEmailService(emailAccount, emailPassword, fromAddress);
 

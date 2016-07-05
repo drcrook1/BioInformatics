@@ -11,6 +11,7 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,13 +50,13 @@ namespace BioInfo.Web.ApplicationApi
             //    appId: "",
             //    appSecret: "");
 
-            GoogleOAuthOptions = new GoogleOAuth2AuthenticationOptions
-            {
-                ClientId = AppSettingsHelper.LoginProviders.Google.ClientId,
-                ClientSecret = AppSettingsHelper.LoginProviders.Google.ClientSecret,
-                Provider = new GoogleOAuthProvider()
-            };
-            app.UseGoogleAuthentication(GoogleOAuthOptions);
+            //GoogleOAuthOptions = new GoogleOAuth2AuthenticationOptions
+            //{
+            //    ClientId = AppSettingsHelper.LoginProviders.Google.ClientId,
+            //    ClientSecret = AppSettingsHelper.LoginProviders.Google.ClientSecret,
+            //    Provider = new GoogleOAuthProvider()
+            //};
+            //app.UseGoogleAuthentication(GoogleOAuthOptions);
         }
 
         private static void EnableApplicationToUseBearerTokens(IAppBuilder app)
@@ -86,7 +87,8 @@ namespace BioInfo.Web.ApplicationApi
 
         private static void ConfigureToUseSingleInstancePerRequest(IAppBuilder app)
         {
-            app.CreatePerOwinContext(SecurityDBContext.Create);
+            var securityConnString = ConfigurationManager.ConnectionStrings["SecurityDBConnString"].ConnectionString;
+            app.CreatePerOwinContext(() => { return SecurityDBContext.Create(securityConnString); } );
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<RefreshTokenManager>(RefreshTokenManager.Create);
             app.CreatePerOwinContext<ClientManager>(ClientManager.Create);

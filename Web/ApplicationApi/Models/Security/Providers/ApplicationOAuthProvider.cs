@@ -65,50 +65,50 @@ namespace BioInfo.Web.ApplicationApi.Models.Security.Providers
 
         public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
-            string clientId;
-            string clientSecret;
+            //string clientId;
+            //string clientSecret;
 
-            if (!context.TryGetBasicCredentials(out clientId, out clientSecret))
-            {
-                context.TryGetFormCredentials(out clientId, out clientSecret);
-            }
+            //if (!context.TryGetBasicCredentials(out clientId, out clientSecret))
+            //{
+            //    context.TryGetFormCredentials(out clientId, out clientSecret);
+            //}
 
-            if (context.ClientId == null)
-            {
-                context.SetError("invalid_clientId", "Client ID is required.");
-                return Task.FromResult<object>(null);
-            }
-            var clientManager = context.OwinContext.Get<ClientManager>();
-            var client = clientManager.FindClient(clientId);
-            if (client == null)
-            {
-                context.SetError("invalid_clientId", "Client is not registered.");
-                return Task.FromResult<object>(null);
-            }
+            //if (context.ClientId == null)
+            //{
+            //    context.SetError("invalid_clientId", "Client ID is required.");
+            //    return Task.FromResult<object>(null);
+            //}
+            //var clientManager = context.OwinContext.Get<ClientManager>();
+            //var client = clientManager.FindClient(clientId);
+            //if (client == null)
+            //{
+            //    context.SetError("invalid_clientId", "Client is not registered.");
+            //    return Task.FromResult<object>(null);
+            //}
 
-            if (client.ApplicationType == ApplicationTypes.NativeConfidential)
-            {
-                if (string.IsNullOrWhiteSpace(clientSecret))
-                {
-                    context.SetError("invalid_clientId", "Client Secret was not provided.");
-                    return Task.FromResult<object>(null);
-                }
-                var passwordHasher = new PasswordHasher();
-                if (client.Secret != passwordHasher.HashPassword(clientSecret))
-                {
-                    context.SetError("invalid_clientId", "Client Secret is invalid.");
-                    return Task.FromResult<object>(null);
-                }
-            }
+            //if (client.ApplicationType == ApplicationTypes.NativeConfidential)
+            //{
+            //    if (string.IsNullOrWhiteSpace(clientSecret))
+            //    {
+            //        context.SetError("invalid_clientId", "Client Secret was not provided.");
+            //        return Task.FromResult<object>(null);
+            //    }
+            //    var passwordHasher = new PasswordHasher();
+            //    if (client.Secret != passwordHasher.HashPassword(clientSecret))
+            //    {
+            //        context.SetError("invalid_clientId", "Client Secret is invalid.");
+            //        return Task.FromResult<object>(null);
+            //    }
+            //}
 
-            if (!client.Active)
-            {
-                context.SetError("invalid_clientId", "Client is inactive.");
-                return Task.FromResult<object>(null);
-            }
+            //if (!client.Active)
+            //{
+            //    context.SetError("invalid_clientId", "Client is inactive.");
+            //    return Task.FromResult<object>(null);
+            //}
 
-            context.OwinContext.Set<string>("as:clientAllowedOrigin", client.AllowedOrigin);
-            context.OwinContext.Set<string>("as:clientRefreshTokenLifeTime", client.RefreshTokenLifeTime.ToString());
+            //context.OwinContext.Set<string>("as:clientAllowedOrigin", client.AllowedOrigin);
+            //context.OwinContext.Set<string>("as:clientRefreshTokenLifeTime", client.RefreshTokenLifeTime.ToString());
 
             context.Validated();
 
