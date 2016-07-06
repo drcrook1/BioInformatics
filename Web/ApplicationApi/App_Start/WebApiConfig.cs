@@ -17,7 +17,7 @@ namespace BioInfo.Web.ApplicationApi
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            UnityConfig.RegisterComponents();
+            UnityConfig.RegisterComponents(config);
         }
     }
 }

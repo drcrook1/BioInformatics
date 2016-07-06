@@ -9,7 +9,7 @@ namespace BioInfo.Web.ApplicationApi
 {
     public static class UnityConfig
     {
-        public static void RegisterComponents()
+        public static void RegisterComponents(HttpConfiguration config)
         {
 			var container = new UnityContainer();
             //Get params for injection
@@ -38,7 +38,7 @@ namespace BioInfo.Web.ApplicationApi
 
 
             //Resolve Types
-            GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
+            config.DependencyResolver = new UnityDependencyResolver(container);
         }
     }
 }
