@@ -14,7 +14,5 @@ namespace BioInfo.Web.ApplicationApi.Models.Security.ViewModels
 
         public IEnumerable<UserLoginInfoViewModel> Logins { get; set; }
 
-        public IEnumerable<ExternalLoginViewModel> ExternalLoginProviders { get; set; }
-
     }
 }

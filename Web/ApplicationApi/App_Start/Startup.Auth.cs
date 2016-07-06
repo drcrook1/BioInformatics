@@ -28,7 +28,6 @@ namespace BioInfo.Web.ApplicationApi
         public void ConfigureAuth(IAppBuilder app)
         {
             ConfigureToUseSingleInstancePerRequest(app);
-            //EnableApplicationToUseCookies(app);
             ConfigureApplicationForOAuthFlow();
             EnableApplicationToUseBearerTokens(app);
 
@@ -36,33 +35,11 @@ namespace BioInfo.Web.ApplicationApi
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             app.UseCors(CorsOptions.AllowAll);
-
-            // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
-
-            //app.UseTwitterAuthentication(
-            //    consumerKey: "",
-            //    consumerSecret: "");
-
-            //app.UseFacebookAuthentication(
-            //    appId: "",
-            //    appSecret: "");
-
-            //GoogleOAuthOptions = new GoogleOAuth2AuthenticationOptions
-            //{
-            //    ClientId = AppSettingsHelper.LoginProviders.Google.ClientId,
-            //    ClientSecret = AppSettingsHelper.LoginProviders.Google.ClientSecret,
-            //    Provider = new GoogleOAuthProvider()
-            //};
-            //app.UseGoogleAuthentication(GoogleOAuthOptions);
         }
 
         private static void EnableApplicationToUseBearerTokens(IAppBuilder app)
         {
             app.UseOAuthBearerTokens(OAuthOptions);
-            //app.UseOAuthAuthorizationServer(OAuthOptions);
         }
 
         private static void ConfigureApplicationForOAuthFlow()
